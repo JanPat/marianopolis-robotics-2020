@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .employeesContainer {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    .employeeBox {
+      background-color: #212941;
+      padding: 1em;
+      padding-bottom: 0em;
+      max-width: 25%;
+      min-width: 200px;
+      text-align: center;
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+      margin-bottom: 2em;
+    }
+    .headshot {
+      width: 100%;
+    }
+    .employeeBox:hover {
+      background-color: green;
+    }
+
+    .top p {
+      font-size: 1em;
+    }
+    .hiddenContainer {
+      display: none;
+    }
+    @media screen and (max-width: 800px) {
+      .left,
+      .employeesContainer {
+        display: none;
+      }
+      .hiddenContainer {
+        display: block;
+        width: 100%;
+        
+      }
+      .hiddenCard {
+        height: 60vh;
+        width: 37.8885vh;
+      }
+      .flip-container {
+        perspective: 1000px;
+        margin-left:auto;
+        margin-right:auto;
+        margin-bottom: 2em;
+      }
+      .flip-container:active .flipper,
+      .flip-container.active .flipper {
+        transform: rotateY(180deg);
+      }
+      .back {
+        background-color: #212941;
+        overflow-y:scroll;
+        border-radius: 1em;
+        
+      }
+      .flip-container,
+      .front,
+      .back {
+        height: 60vh;
+        width: 37.8885vh;
+      }
+      .flipper {
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+      .front,
+      .back {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .front {
+        z-index: 2;
+        transform: rotateY(0deg);
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+      .flip-container:active .flipper,
+      .flip-container.active .flipper,
+      .flip-container.flip .flipper {
+        transform: rotateY(180deg);
+      }
+      .hiddenInfo{
+        margin: 1em;
+      }
+      .flipper img{
+        border-radius:1em;
+      }
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+    var employees = [
+      {
+        order: 0,
+        idPic:"https://live.staticflickr.com/65535/49374355447_93bffec3cf_b.jpg",
+        number: "Employee #31001",
+        name: "Name: Janvi Patel",
+        position: "Position: Captain",
+        divisions: "Divisions: Robot, Website, Kiosk, Video",
+        years: "Years Active: 2012 - present",
+        alien: "Favourite Alien: The Alien",
+        clearance: "Clearance Level: 7",
+        summary:"As one of the co-captains, I had to oversee all areas of work in the team. I designed this year's website and spent most of my time with the robot. I enjoy using concepts taught in class and applying them to actual things that I can build. I spent a lot of time designing and working on the giant wheel flipper and the extending arm. I learnt a lot from my team members, like how to 3d model, and had the privilege of helping out newer members with what I love most: robotics. I also developed my web design skills with a more ambitious plan for website. I had to sacrifice a lot of time (and sleep) outside of workdays to work on the website and manage the team. But overall, I had a lot of fun with this team and prepping for the CRC competition."      
+      },
+      {
+        order: 1,
+        idPic:"https://live.staticflickr.com/65535/49374354922_3824800ba5_b.jpg",
+        number: "Employee #58171",
+        name: "Name: Leftraru González-Tucas",
+        position: "Position: Captain",
+        divisions: "Divisions: Kiosk, Robot, Video",
+        years: "Years Active: 2018-present",
+        alien: "Favourite Alien: Yoda",
+        clearance: "Clearance Level: 8",
+        summary: "As a co-captain, I have sacrificed a lot of time and sanity to the progression of the team's efforts. This year I worked primarily on the kiosk (building of walls and a stasis tube), on the robot and the video. I have learned that no matter how much we can try and plan ahead, we always need to end up improvising. I struggled a lot with finding and organizing the tools I needed. Robotics has been an amazing place to get to know wonderful people and constantly learn new things."
+      },
+      {
+        order: 2,
+        idPic:"https://live.staticflickr.com/65535/49374355492_9bd2cf59ab_b.jpg",
+        number: "Employee #00117",
+        name: "Name: Anh-Khoa Chau-Vo",
+        position: "Position: Team Member",
+        divisions: "Divisions: Video, Kiosk, Robot",
+        years: "Years Active: 2016 - present",
+        alien: "Favourite Alien: The Doctor",
+        clearance: "Clearance Level: 5",
+        summary: "I worked on directing the video as well as editing the sound of said video. I also made some props for the kiosk. I did a little bit of work on the robot by helping assembling things or making parts. I struggled following the schedule due to filming taking much more time than anticipated. From this, I also learned that I should plan filming angles before actually filming in order to save time and not forget anything. I had to sacrifice my vacation time and sleep for robotics. "
+      },
+      {
+        order: 3,
+        idPic:"https://live.staticflickr.com/65535/49374354977_12a2dd77b7_b.jpg",
+        number: "Employee #00014",
+        name: "Name: Ioanna Korbis",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video, Website",
+        years: "Years Active: 2017 - present",
+        alien: "Favourite Alien: Stitch",
+        clearance: "Clearance Level: 7",
+        summary: "I am part of the robot and kiosk team. I learned that it is very hard to achieve something in one try. You go through several trials and errors of building and rebuilding before actually getting a result that can be used and that you are proud of. I struggled with finding the right tools necessary to do what needed to be done and being able to find them again once I finished using them. Finally, the thing that I sacrificed is maintaining a reasonable sleep schedule. "
+      },
+      {
+        order: 4,
+        idPic:"https://live.staticflickr.com/65535/49373695528_c95ac19d88_b.jpg",
+        number: "Employee #26689",
+        name: "Name: Jason Wang",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot",
+        years: "Years Active: 2016 - present",
+        alien: "Favourite Alien: Mark Zuckerberg",
+        clearance: "Clearance Level: 8",
+        summary: "I focused primarily on designing systems for the robot to launch the carriage on the arch. The most difficult aspect of working on this system were the physical constraints of the task. When designing the system, I was trying minimize the amount of the space it would take since it is unknown how much will be available for the system. But due to the nature of requiring a significant amount of explosive force and the need to reload the system automatically，trying to consider space in the design greatly limited options. However during this process I learned about more complex variations of typical mechanisms, such as irregular cams and mobile gears."
+      },
+      {
+        order: 5,
+        idPic:"https://live.staticflickr.com/65535/49374355267_c3ddd3e5ca_b.jpg",
+        number: "Employee #123456",
+        name: "Name: Jessica Macknofsky",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video",
+        years: "Years Active: adsfsdf",
+        alien: "Favourite Alien: kfdlajs",
+        clearance: "Clearance Level: 1",
+        summary: "aaaaaaaaaaaaa"
+      },
+      {
+        order: 6,
+        idPic:"https://live.staticflickr.com/65535/49374354882_64ae606b00_b.jpg",
+        number: "Employee #88888",
+        name: "Name: Jia Feng Yu",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Website",
+        years: "Years Active: 2019 - present",
+        alien: "Favourite Alien: Thanos",
+        clearance: "Clearance Level: 5",
+        summary: "I am part of the robot and website team; as a newbie in the robotics field, I learned a lot about designing mechanisms as well as actually constructing the robot from the ground up. One of my biggest struggles is applying my theoretical knowledge into a functioning piece of machinery. I also struggled a lot with the heavy construction tools and how to employ them in a safe manner. If I had to decide what was my biggest sacrifice for the team, I'd have to say that it has to be waking up early in the morning while my friends are enjoying their beauty sleep. However, if I had the chance to relive Robotics all over again, I'd wake up at the crack of dawn without a single second of hesitation!  "
+      },
+      {
+        order: 7,
+        idPic:"https://live.staticflickr.com/65535/49373695493_699e9d92e5_b.jpg",
+        number: "Employee #123456",
+        name: "Name: Ninja Song",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video",
+        years: "Years Active: adsfsdf",
+        alien: "Favourite Alien: kfdlajs",
+        clearance: "Clearance Level: 0",
+        summary: "aaaaaaaaaaaaa"
+      },
+      {
+        order: 8,
+        number: "Employee #10101",
+        idPic:"https://live.staticflickr.com/65535/49373695643_358446cf6e_b.jpg",
+        name: "Name: Shuming Li",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video",
+        years: "Years Active: 2019 - present",
+        alien: "Favourite Alien: Chewbacca",
+        clearance: "Clearance Level: 6",
+        summary: "I cut metal, painted the wall, and helped mount the Ikea furniture. I gained new experience such as learning to use the drill press. More importantly, I learned the significance of teamwork and enjoyed creating something from scratch with my teammates. While I originally played a role at the beginning of the video, I struggled with memorizing my line, however I was able to finish the shot after numerous times of trying. While the workdays are during the break, we had to sacrifice the time to hang out with friends and to sleep in, however, building robots and decorating the kiosk with my teammates have always been fun, and I feel a sense of accomplishment whenever I finish a small component of whether the robot or the kiosk, these small sacrifices are definitely worth it. "
+      },
+      {
+        order: 9,
+        number: "Employee #00800",
+        idPic:"https://live.staticflickr.com/65535/49374150356_81fcfb8035_b.jpg",
+        name: "Name: Asghar Taqvi",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Video",
+        years: "Years Active: 2018 - present",
+        alien: "Favourite Alien: Son Goku",
+        clearance: "Clearance Level: 3",
+        summary: "Other than intense filing and cutting, I sacrificed time with my family in the states to build different mechanisms and sections of the robot. I tried out being an actor in the video and also helped out with the programming competition. As kind of a noob in hardcore building, I learned the ropes on assembling structures and getting comfortable with all the tools and materials. Finally, I learned not to be so trusting of other people, especially when they try to give you Ikea food."
+      },
+      {
+        order: 10,
+        idPic:"https://live.staticflickr.com/65535/49374150526_dc84c4a260_b.jpg",
+        number: "Employee #80085",
+        name: "Name: Christopher Moellenhoff",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk",
+        years: "Years Active: 2013 - present",
+        alien: "Favourite Alien: Lizard People",
+        clearance: "Clearance Level: 5",
+        summary: "I helped conceptualize some of the robots mechanisms, build the base frame and the mechanisms. I struggled with building the arm to hit the buttons, finding the correct Allen key and particularly with writing this bio. I sacrificed sleep, time but I enjoyed it while being sleep deprived. I learned how to conserve space and work in a cramped room with other equally cramped individuals. I also learned how to work with others in friendly and civil ways"
+      },
+      {
+        order: 11,
+        idPic:"https://live.staticflickr.com/65535/49373696058_f56fd2fbeb_b.jpg",
+        number: "Employee #20115",
+        name: "Name: Darren Tao",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video",
+        years: "Years Active: 2019 - present",
+        alien: "Favourite Alien: Vel'Koz",
+        clearance: "Clearance Level: 2",
+        summary: "I’m the all-around guy, although with a focus on the video. Wielding a klunky, broken boom mic, making sure that the lighting is consistent, the shots are well chosen, and the general continuity was followed are all challenges part of the work. For the robot, I helped working on the friction mess that is the linear system. 3-D printed pulleys and an INCREDIBLY GENEROUS amount of lubricant did the job just fine. Designed stasis tube, NOT a shower. From learning LICENSED Adobe software to building robots, fun experience. 10/10, great use of my winter break"
+      },
+      {
+        order: 12,
+        idPic:"https://live.staticflickr.com/65535/49374150846_66f3ee9a9f_b.jpg",
+        number: "Employee #03990",
+        name: "Name: Dat Ha",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot",
+        years: "Years Active: 2014 - present",
+        alien: "Favourite Alien: Elon Musk",
+        clearance: "Clearance Level: 1",
+        summary: "I worked on design, prototyping, piece manufacturing and coding on most systems of the robot. I also managed our 3D printer. Furthermore, I struggled with the unbreathable air of our temporary room. In addition, I learned some leadership skills while working with the team. Finally, I sacrificed some time that I would have used to work on other robotics competition. I used to be an FRC driver for team 3990."
+      },
+      {
+        order: 13,
+        idPic:"https://live.staticflickr.com/65535/49374150901_6570ca3fd5_b.jpg",
+        number: "Employee #123456",
+        name: "Name: Eduard Anton",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot",
+        years: "Years Active: 1019 - present",
+        alien: "Favourite Alien: adsfdsf",
+        clearance: "Clearance Level: 0",
+        summary: "aaaaaaaaaaaaa"
+      },
+      {
+        order: 14,
+        idPic:"https://live.staticflickr.com/65535/49374355822_dcbca35f05_b.jpg",
+        number: "Employee #00011",
+        name: "Name: Kevin Sawaya",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Video",
+        years: "Years Active: 2019 - present",
+        alien: "Favourite Alien: ALF",
+        clearance: "Clearance Level: 4",
+        summary: "I mainly worked on most of the graphics for the team and the video (shooting and editing). I also helped machine some small parts for the robot as well as connecting and soldering wires. Machining certain parts proved to be challenging without the right tools, so I had to get creative to complete certain tasks. For the video, I learned that it's crucial to plan every scene in great details in order to get through them efficiently and make the editing process easier. Being part of the robotics club and participating in the CRC competition meant that I had to sacrifice part of my winter break."
+      },
+      {
+        order: 15,
+        idPic:"https://live.staticflickr.com/65535/49374150321_43cf56cc11_b.jpg",
+        number: "Employee #07903",
+        name: "Name: Kulsoom Taqvi",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Website",
+        years: "Years Active: 2019 - present",
+        alien: "Favourite Alien: Baby Yoda",
+        clearance: "Clearance Level: 6",
+        summary: "This was my first time participating in a CRC competition, and although I barely saw my bed over winter break (minus those blissful Sundays), this was truly an unforgettable experience. Although I experienced firsthand the struggle of cutting and filing metal (RIP my arm and sanity), I realized the importance of teamwork. I was on the kiosk as well as the robot team, and with the help of my team members I was able to overcome my initial newbie nervousness to build mechanisms, mount structures and, overall, develop my skills to produce something pretty cool!"
+      },
+      {
+        order: 16,
+        idPic:"https://live.staticflickr.com/65535/49373695778_5d1db4b0d2_b.jpg",
+        number: "Employee #53180",
+        name: "Name: Max Wu-Blouin",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot, Kiosk, Video",
+        years: "Years Active: 2012 - present",
+        alien: "Favourite Alien: Yoda",
+        clearance: "Clearance Level: 7",
+        summary: "I worked on a lot of things on the team (none of which I've been able to finish on my own). This includes wiring, robot design, and the linear motion arm (which isn't part of the robot anymore). I also play one of the lead roles in the video. The hardest part for me was wiring, since I don't have much experience in that area, but I learned a lot from others on how to make the robot not blow up. I am also very good at making tinfoil hats. Like, REALLY good. "
+      },
+      {
+        order: 17,
+        idPic:"https://live.staticflickr.com/65535/49373695728_7ac574c535_b.jpg",
+        number: "Employee #00047",
+        name: "Name: Neil Clara",
+        position: "Position: Team Member",
+        divisions: "Divisions: Robot",
+        years: "Years Active: 2014 - present",
+        alien: "Favourite Alien: Yondu",
+        clearance: "Clearance Level: 4",
+        summary: "I worked closely with the robot design team through conception, prototyping and final assembly stages. I worked to my strengths, mainly focusing on designing and building mechanical components, while also undertaking new opportunities to learn and broaden my understanding of the topic at hand. Being a first-year student, it was a challenge to adapt to a new working environment and learn to collaborate with a new team. As with any project of this scale, time is a major sacrifice that had to be made for the success of the build. "
+      },
+      {
+        order: 18,
+        idPic:"https://live.staticflickr.com/65535/49373696008_56f6124510_b.jpg",
+        number: "Employee #00000",
+        name: "Name: Dominique Paradis",
+        position: "Position: Mentor",
+        divisions: "Divisions: Robot, Kiosk, Video, Website",
+        years: "Years Active: A long time",
+        alien: "Favourite Alien: Chewbacca",
+        clearance: "Clearance Level: 3",
+        summary: "My tasks involve budgeting, feasibility and safety. I make sure that people design things that actually make sense, for this task, in the physical world, anf financially. When they actually are building the robot and kiosk, I make sure that they don't injure themselves in the construction process."
+      }
+    ];
+
+    function displayEmployee(clicked) {
+      
+      document.getElementById("employeeIDcard").src=employees[clicked].idPic;
+      document.getElementById("eNumber").innerHTML = employees[clicked].number;
+      document.getElementById("eName").innerHTML = employees[clicked].name;
+      document.getElementById("ePosition").innerHTML =
+        employees[clicked].position;
+      document.getElementById("eDivisions").innerHTML =
+        employees[clicked].divisions;
+      document.getElementById("eYears").innerHTML = employees[clicked].years;
+      document.getElementById("eAlien").innerHTML = employees[clicked].alien;
+      document.getElementById("eClearance").innerHTML =
+        employees[clicked].clearance;
+      document.getElementById("eSummary").innerHTML =
+        employees[clicked].summary;
+      document.getElementById("intro").innerHTML =
+        "Summary of Work at the Mari 51 Base:";
+      var numbers = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+      var filteredNumbers = numbers.filter(function(e) { return e !== clicked })
+      document.getElementById(String(clicked)).style.backgroundColor= "green";
+      filteredNumbers.forEach(myFunction);
+      function myFunction(value) {
+        document.getElementById(String(value)).style.backgroundColor= "#212941";
+      }
+    };
+    
+    document.querySelector("#myCard").classList.toggle("flip");
+    
+  </script>
+  <body>
+    <div class="hiddenHeader">
+      <div onclick="window.location='../home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../home51.html'">
+        <h2>
+          Home
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../home.html'">
+        <h2>
+          Back to Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          About
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../school.html'">
+        <p>
+          Mari 51 Base
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../team.html'">
+        <p>
+          Employee Database
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Security Threats
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Lab Work
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../journal.html'">
+        <p>
+          Lab Entries
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../tutorial.html'">
+        <p>
+          Special Projects
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../gallery.html'">
+        <p>
+          Gallery
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Language
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/team.html'">
+        <p>
+          Français
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../school.html'">
+        <h2>
+          Mari 51 Base
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../team.html'">
+        <h2>
+          Employee Database
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Security Threats
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+            Lab Work
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../journal.html'">
+          <h2>
+            Lab Entries
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../tutorial.html'">
+          <h2>
+            Special Projects
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../gallery.html'">
+          <h2>
+            Gallery
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/team.html'">
+        <h2>
+          Français
+        </h2>
+      </div>
+      <div onclick="window.location='../home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            Employee Database
+          </h1>
+          <div class="content">
+            <p>
+              The employees of the Mari 51 Secret Alien Base are a group of
+              highly skilled government officials who are under the guise of
+              CEGEP-aged students. To maintain their cover, they make up the
+              Marianopolis Robotics Team. This allows them to have multiple
+              meetups throughout the year without any external sources becoming
+              suspicious of their actual alien-related activities.
+              <br /><br />
+              Under the leadership of Janvi and Lefty, as well as the mentorship of
+              Dominique Paradis, the Marianopolis Robotics Team is working on
+              their performance at the FLIP 2020 competition hosted by CRC
+              Robotics. The members of the Team each work on various
+              sub-elements of the competition based on their skills and
+              interests.
+            </p>
+            <div class="employeesContainer">
+              <div class="employeeBox" id="0" onclick="displayEmployee(0)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343280731_8245e81d35_b.jpg"
+                />
+                <p>Janvi Patel</p>
+              </div>
+              <div class="employeeBox" id="1" onclick="displayEmployee(1)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49353587693_91c822632e_b.jpg"
+                />
+                <p>Leftraru Gonzalez-Tucas</p>
+              </div>
+              <div class="employeeBox" id="2" onclick="displayEmployee(2)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343301751_d1f23cc316_b.jpg"
+                />
+                <p>Anh-Khoa Chau-Vo</p>
+              </div>
+              <div class="employeeBox" id="3" onclick="displayEmployee(3)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49342918788_8752a012a0_b.jpg"
+                />
+                <p>Ioanna Korbis</p>
+              </div>
+              <div class="employeeBox" id="4" onclick="displayEmployee(4)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49354037911_e2c39aeae9_b.jpg"
+                />
+                <p>Jason Wang</p>
+              </div>
+              <div class="employeeBox" id="5" onclick="displayEmployee(5)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343578502_d1ddcde45c_b.jpg"
+                />
+                <p>Jessica Macknofsky</p>
+              </div>
+              <div class="employeeBox" id="6" onclick="displayEmployee(6)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49354037801_b0c741f897_b.jpg"
+                />
+                <p>Jia Feng Yu</p>
+              </div>
+              <div class="employeeBox" id="7" onclick="displayEmployee(7)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49354253677_dd3126bcb1_b.jpg"
+                />
+                <p>Ninja Song</p>
+              </div>
+              <div class="employeeBox" id="8" onclick="displayEmployee(8)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49342918713_66ddeb516c_b.jpg"
+                />
+                <p>Shuming Li</p>
+              </div>
+              <div class="employeeBox" id="9" onclick="displayEmployee(9)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49346645337_eb3a083760_b.jpg"
+                />
+                <p>Asghar Taqvi</p>
+              </div>
+              <div class="employeeBox" id="10" onclick="displayEmployee(10)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49353587988_e7b3b60b7d_b.jpg"
+                />
+                <p>Christopher Moellenhoff</p>
+              </div>
+              <div class="employeeBox" id="11" onclick="displayEmployee(11)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49342827243_8dd632f4a0_b.jpg"
+                />
+                <p>Darren Tao</p>
+              </div>
+              <div class="employeeBox" id="12" onclick="displayEmployee(12)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343280321_3b924e2251_b.jpg"
+                />
+                <p>Dat Ha</p>
+              </div>
+              <div class="employeeBox" id="13" onclick="displayEmployee(13)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343501622_3d81850021_b.jpg"
+                />
+                <p>Eduard Anton</p>
+              </div>
+              <div class="employeeBox" id="14" onclick="displayEmployee(14)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49342889863_b90cd94183_b.jpg"
+                />
+                <p>Kevin Sawaya</p>
+              </div>
+              <div class="employeeBox" id="15" onclick="displayEmployee(15)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49346656162_ace377a128_b.jpg"
+                />
+                <p>Kulsoom Taqvi</p>
+              </div>
+              <div class="employeeBox" id="16" onclick="displayEmployee(16)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49346434126_21ca2aab27_b.jpg"
+                />
+                <p>Max Wu-Blouin</p>
+              </div>
+              <div class="employeeBox" id="17" onclick="displayEmployee(17)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343353321_38ae9acf9a_b.jpg"
+                />
+                <p>Neil Clara</p>
+              </div>
+              <div class="employeeBox" id="18" onclick="displayEmployee(18)">
+                <img
+                  class="headshot"
+                  src="https://live.staticflickr.com/65535/49343301286_93627d018e_b.jpg"
+                />
+                <p>Dominique Paradis</p>
+              </div>
+            </div>
+
+
+            <div class="hiddenContainer">
+              
+              
+              <div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374355447_93bffec3cf_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #031001</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Janvi Patel</span>
+                        <br/>
+                        <span>Position: Captain</span>
+                        <br/>
+                        <span>Divisions: Robot, Website, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active: 2012 - present</span>
+                        <br/>
+                        <span>Favourite Alien: The Alien</span>
+                        <br/>
+                        <span>Clearance Level: 7</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span> As one of the co-captains, I had to oversee all areas of work in the team. I designed this year's website and spent most of my time with the robot. I enjoy using concepts taught in class and applying them to actual things that I can build. I spent a lot of time designing and working on the giant wheel flipper and the extending arm. I learnt a lot from my team members, like how to 3d model, and had the privilege of helping out newer members with what I love most: robotics. I also developed my web designs skills with a more ambitious plan for website. I had to sacrifice a lot of time (and sleep) outside of workdays to work on the website and manage the team. But overall, I had a lot of fun with this team and prepping for the CRC competition.   </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374354922_3824800ba5_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #58171</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Leftraru González-Tucas</span>
+                        <br/>
+                        <span>Position: Captain</span>
+                        <br/>
+                        <span>Divisions: Kiosk, Robot, Video</span>
+                        <br/>
+                        <span>Years Active:2018-present</span>
+                        <br/>
+                        <span>Favourite Alien: Yoda</span>
+                        <br/>
+                        <span>Clearance Level: 8</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span> As a co-captain, I have sacrificed a lot of time and sanity to the progression of the team’s efforts. This year I worked primarily on the kiosk (building of walls and a stasis tube), on the robot and the video. I have learned that no matter how much we can try and plan ahead, we always need to end up improvising. I struggled a lot with finding and organizing the tools I needed. Robotics has been an amazing place to get to know wonderful people and constantly learn new things.   </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374355492_9bd2cf59ab_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00117</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Anh-Khoa Chau-Vo</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Video, Kiosk, Robot</span>
+                        <br/>
+                        <span>Years Active: 2016 - present</span>
+                        <br/>
+                        <span>Favourite Alien: The Doctor</span>
+                        <br/>
+                        <span>Clearance Level: 5 </span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span> I worked on directing the video as well as editing the sound of said video. I also made some props for the kiosk. I did a little bit of work on the robot by helping assembling things or making parts. I struggled following the schedule due to filming taking much more time than anticipated. From this, I also learned that I should plan filming angles before actually filming in order to save time and not forget anything. I had to sacrifice my vacation time and sleep for robotics. 
+  </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374354977_12a2dd77b7_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00014</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Ioanna Korbis</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video, Website</span>
+                        <br/>
+                        <span>Years Active:2017-present</span>
+                        <br/>
+                        <span>Favourite Alien:Stitch</span>
+                        <br/>
+                        <span>Clearance Level: 7</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I am part of the robot and kiosk team. I learned that it is very hard to achieve something in one try. You go through several trials and errors of building and rebuilding before actually getting a result that can be used and that you are proud of. I struggled with finding the right tools necessary to do what needed to be done and being able to find them again once I finished using them. Finally, the thing that I sacrificed is maintaining a reasonable sleep schedule. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373695528_c95ac19d88_b.jpg
+" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #26689</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Jason Wang</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot</span>
+                        <br/>
+                        <span>Years Active:2016-present</span>
+                        <br/>
+                        <span>Favourite Alien: Mark Zuckerberg</span>
+                        <br/>
+                        <span>Clearance Level: 8</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I focused primarily on designing systems for the robot to launch the carriage on the arch. The most difficult aspect of working on this system were the physical constraints of the task. When designing the system, I was trying minimize the amount of the space it would take since it is unknown how much will be available for the system. But due to the nature of requiring a significant amount of explosive force and the need to reload the system automatically，trying to consider space in the design greatly limited options. However during this process I learned about more complex variations of typical mechanisms, such as irregular cams and mobile gears.</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374355267_c3ddd3e5ca_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #123456</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Jessica Macknofsky</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active:adsfsdf</span>
+                        <br/>
+                        <span>Favourite Alien: kfdlajs</span>
+                        <br/>
+                        <span>Clearance Level: 1</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>aaaaaaaaaaaaa</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374354882_64ae606b00_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #88888</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Jia Feng Yu</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Website</span>
+                        <br/>
+                        <span>Years Active:2019 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Thanos</span>
+                        <br/>
+                        <span>Clearance Level: 5</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I am part of the robot and website team; as a newbie in the robotics field, I learned a lot about designing mechanisms as well as actually constructing the robot from the ground up. One of my biggest struggles is applying my theoretical knowledge into a functioning piece of machinery. I also struggled a lot with the heavy construction tools and how to employ them in a safe manner. If I had to decide what was my biggest sacrifice for the team, I'd have to say that it has to be waking up early in the morning while my friends are enjoying their beauty sleep. However, if I had the chance to relive Robotics all over again, I'd wake up at the crack of dawn without a single second of hesitation!  </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373695493_699e9d92e5_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #123456</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Ninja Song</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active:adsfsdf</span>
+                        <br/>
+                        <span>Favourite Alien: kfdlajs</span>
+                        <br/>
+                        <span>Clearance Level: 0</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>aaaaaaaaaaaaa</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373695643_358446cf6e_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #10101</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Shuming Li</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active:2019 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Chewbacca</span>
+                        <br/>
+                        <span>Clearance Level: 6</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I cut metal, painted the wall, and helped mount the Ikea furniture. I gained new experience such as learning to use the drill press. More importantly, I learned the significance of teamwork and enjoyed creating something from scratch with my teammates. While I originally played a role at the beginning of the video, I struggled with memorizing my line, however I was able to finish the shot after numerous times of trying. While the workdays are during the break, we had to sacrifice the time to hang out with friends and to sleep in, however, building robots and decorating the kiosk with my teammates have always been fun, and I feel a sense of accomplishment whenever I finish a small component of whether the robot or the kiosk, these small sacrifices are definitely worth it. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374150356_81fcfb8035_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00800</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Asghar Taqvi</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Video</span>
+                        <br/>
+                        <span>Years Active:2018 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Son Goku</span>
+                        <br/>
+                        <span>Clearance Level: 3</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>Other than intense filing and cutting, I sacrificed time with my family in the states to build different mechanisms and sections of the robot. I tried out being an actor in the video and also helped out with the programming competition. As kind of a noob in hardcore building, I learned the ropes on assembling structures and getting comfortable with all the tools and materials. Finally, I learned not to be so trusting of other people, especially when they try to give you Ikea food. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374150526_dc84c4a260_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #80085</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Christopher Moellenhoff</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk</span>
+                        <br/>
+                        <span>Years Active:2013 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Lizard People</span>
+                        <br/>
+                        <span>Clearance Level: 5</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I helped conceptualize some of the robots mechanisms, build the base frame and the mechanisms. I struggled with building the arm to hit the buttons, finding the correct Allen key and particularly with writing this bio. I sacrificed sleep, time but I enjoyed it while being sleep deprived. I learned how to conserve space and work in a cramped room with other equally cramped individuals. I also learned how to work with others in friendly and civil ways</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373696058_f56fd2fbeb_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #20115</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Darren Tao</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active:2013 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Vel'Koz</span>
+                        <br/>
+                        <span>Clearance Level: 2</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I’m the all-around guy, although with a focus on the video. Wielding a klunky, broken boom mic, making sure that the lighting is consistent, the shots are well chosen, and the general continuity was followed are all challenges part of the work. For the robot, I helped working on the friction mess that is the linear system. 3-D printed pulleys and an INCREDIBLY GENEROUS amount of lubricant did the job just fine. Designed stasis tube, NOT a shower. From learning LICENSED Adobe software to building robots, fun experience. 10/10, great use of my winter break </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374150846_66f3ee9a9f_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #03990</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Dat Ha</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot</span>
+                        <br/>
+                        <span>Years Active:2014 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Elon Musk</span>
+                        <br/>
+                        <span>Clearance Level: 1</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I worked on design, prototyping, piece manufacturing and coding on most systems of the robot. I also managed our 3D printer. Furthermore, I struggled with the unbreathable air of our temporary room. In addition, I learned some leadership skills while working with the team. Finally, I sacrificed some time that I would have used to work on other robotics competition. I used to be an FRC driver for team 3990.</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374150901_6570ca3fd5_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #123456</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Eduard Anton</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot</span>
+                        <br/>
+                        <span>Years Active:1019 - present</span>
+                        <br/>
+                        <span>Favourite Alien: adsfdsf</span>
+                        <br/>
+                        <span>Clearance Level: 0</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>aaaaaaaaaaaaa</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374355822_dcbca35f05_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00011</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Kevin Sawaya</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Video</span>
+                        <br/>
+                        <span>Years Active:2019 - present</span>
+                        <br/>
+                        <span>Favourite Alien: ALF</span>
+                        <br/>
+                        <span>Clearance Level: 4</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I mainly worked on most of the graphics for the team and the video (shooting and editing). I also helped machine some small parts for the robot as well as connecting and soldering wires. Machining certain parts proved to be challenging without the right tools, so I had to get creative to complete certain tasks. For the video, I learned that it's crucial to plan every scene in great details in order to get through them efficiently and make the editing process easier. Being part of the robotics club and participating in the CRC competition meant that I had to sacrifice part of my winter break.</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49374150321_43cf56cc11_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #07903</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Kulsoom Taqvi</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Website</span>
+                        <br/>
+                        <span>Years Active:2019 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Baby Yoda</span>
+                        <br/>
+                        <span>Clearance Level: 6</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>This was my first time participating in a CRC competition, and although I barely saw my bed over winter break (minus those blissful Sundays), this was truly an unforgettable experience. Although I experienced firsthand the struggle of cutting and filing metal (RIP my arm and sanity), I realized the importance of teamwork. I was on the kiosk as well as the robot team, and with the help of my team members I was able to overcome my initial newbie nervousness to build mechanisms, mount structures and, overall, develop my skills to produce something pretty cool!</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373695778_5d1db4b0d2_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #53180</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Max Wu-Blouin</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video</span>
+                        <br/>
+                        <span>Years Active:2012 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Yoda</span>
+                        <br/>
+                        <span>Clearance Level: 7</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I worked on a lot of things on the team (none of which I've been able to finish on my own). This includes wiring, robot design, and the linear motion arm (which isn't part of the robot anymore). I also play one of the lead roles in the video. The hardest part for me was wiring, since I don't have much experience in that area, but I learned a lot from others on how to make the robot not blow up. I am also very good at making tinfoil hats. Like, REALLY good. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373695728_7ac574c535_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00047</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Neil Clara</span>
+                        <br/>
+                        <span>Position: Team Member</span>
+                        <br/>
+                        <span>Divisions: Robot </span>
+                        <br/>
+                        <span>Years Active:2014 - present</span>
+                        <br/>
+                        <span>Favourite Alien: Yondu</span>
+                        <br/>
+                        <span>Clearance Level: 4</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>I worked closely with the robot design team through conception, prototyping and final assembly stages. I worked to my strengths, mainly focusing on designing and building mechanical components, while also undertaking new opportunities to learn and broaden my understanding of the topic at hand. Being a first-year student, it was a challenge to adapt to a new working environment and learn to collaborate with a new team. As with any project of this scale, time is a major sacrifice that had to be made for the success of the build. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<div class="flip-container"  onclick="this.classList.toggle('active');">
+                <div class="flipper">
+                  <div class="front">
+                    <img src="https://live.staticflickr.com/65535/49373696008_56f6124510_b.jpg" class="hiddenCard"/>
+                  </div>
+                  <div class="back" onclick="this.classList.toggle('active');">
+                    <div class="hiddenInfo">
+                      <h2>
+                        Employee Information
+                      </h2>
+                      <h3>Employee #00000</h3>
+                      <h4 style="line-height: 1.5;">
+                        <span>Name: Dominique Paradis</span>
+                        <br/>
+                        <span>Position: Mentor</span>
+                        <br/>
+                        <span>Divisions: Robot, Kiosk, Video, Website </span>
+                        <br/>
+                        <span>Years Active: A long time</span>
+                        <br/>
+                        <span>Favourite Alien: Chewbacca</span>
+                        <br/>
+                        <span>Clearance Level: 3</span>
+                        <br/><br>
+                        <span>Summary of Work at the Mari 51 Base:</span>
+                        <br />
+                        <span>My tasks involve budgeting, feasibility and safety. I make sure that people design things that actually make sense, for this task, in the physical world, anf financially. When they actually are building the robot and kiosk, I make sure that they don't injure themselves in the construction process. </span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="top" style="height:45%;">
+          <div class="topBox">
+            <h2 style="margin:0;">
+              Employee Information
+            </h2>
+            <h3 id="eNumber">
+              Click an employee picture to display their information.
+            </h3>
+            <div class="empLeft" style="float:left;width:50%;">
+              <p style="margin-top:0;margin-bottom:0;">
+                <span id="eName"></span>
+                <br />
+                <span id="ePosition"></span>
+                <br />
+                <span id="eDivisions"></span>
+              </p>
+            </div>
+            <div class="empRight" style="float:right;width:50%">
+              <p style="margin-left:2em;margin-top:0;margin-bottom:0;">
+                <span id="eYears"></span>
+                <br />
+                <span id="eAlien"></span>
+                <br />
+                <span id="eClearance"></span>
+              </p>
+            </div>
+            <div style="width:100%;float:left;margin-top:0;margin-bottom:0;">
+              <p>
+                <span id="intro"></span>
+                <br />
+                <span id="eSummary"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom" style="height:55%">
+          <div class="bottomBox" style="text-align: center;border:none;">
+            <div style="height:100%">
+              <img
+                src="https://live.staticflickr.com/65535/49374151031_b7aa30d3bd_b.jpg"
+                style="max-height: 100%;max-width:49%;border-radius:1em;"
+              />
+              <img
+                src=""
+                id="employeeIDcard"
+                style="max-height: 100%;max-width:49%;border-radius:1em;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
