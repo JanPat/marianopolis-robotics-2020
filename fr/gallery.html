@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .right {
+      width: 100%;
+    }
+    .rightBox {
+      left: 1em;
+      border: none;
+    }
+
+    .imagesContainer {
+      display: -ms-flexbox; /* IE10 */
+      display: flex;
+      -ms-flex-wrap: wrap; /* IE10 */
+      flex-wrap: wrap;
+      padding: 0 4px;
+      box-sizing: border-box;
+    }
+    .column {
+      -ms-flex: 25%; /* IE10 */
+      flex: 25%;
+      max-width: 25%;
+      padding: 0 4px;
+      box-sizing: border-box;
+    }
+
+    .column img {
+      margin-top: 8px;
+      vertical-align: middle;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media screen and (max-width: 1000px) {
+      .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+      }
+    }
+
+    /*Mobile*/
+    @media screen and (max-width: 800px) {
+      .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+  </script>
+  <body>
+    <div class="hiddenHeader">
+      <div onclick="window.location='../fr/home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../fr/home51.html'">
+        <h2>
+          Accueil
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../fr/home.html'">
+        <h2>
+         Retour à Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+À propos 
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/school.html'">
+        <p>
+         La base Mari 51
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/team.html'">
+        <p>
+          Employés
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Menaces de sécurité
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Travaux de laboratoire
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/journal.html'">
+        <p>
+         Entrées de laboratoire
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/tutorial.html'">
+        <p>
+         Projets spéciaux
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/gallery.html'">
+        <p>
+          Galerie
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Langue
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../en/gallery.html'">
+        <p>
+          English
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../fr/home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../fr/school.html'">
+        <h2>
+           La base Mari 51
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/team.html'">
+        <h2>
+         Employés
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Menaces de sécurité
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+           Travaux de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/journal.html'">
+          <h2>
+            Entrées de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/tutorial.html'">
+          <h2>
+            Projets spéciaux
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/gallery.html'">
+          <h2>
+            Galerie
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../en/gallery.html'">
+        <h2>
+          English
+        </h2>
+      </div>
+      <div onclick="window.location='../fr/home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            Gallery
+          </h1>
+          <br />
+          <div class="imagesContainer">
+            <div class="column">
+              <img
+                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/aliens-smell-1574631212.jpg?resize=980:*"
+                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49376557986_abfefb6cf4_b.jpg"                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49376558161_99b899586b_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49392150428_84ed88c46a_b.jpg"                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1573&q=80"
+                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1568912764672-8d2e33fc5a14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
+                style="width:100%"
+              />
+            </div>
+            <div class="column">
+              <img
+src="https://live.staticflickr.com/65535/49392825632_829ceccc95_b.jpg"                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+               style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49387168983_e02950a593_b.jpg"                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1568912764672-8d2e33fc5a14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1001&q=80"
+                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49376103443_be9d43b76b_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49396913703_5e7f5c69bc_b.jpg"                style="width:100%"
+              />
+            </div>
+            <div class="column">
+              <img
+src="https://live.staticflickr.com/65535/49376776972_16e7c7c7bf_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49387839517_09d106bfe8_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49382640912_e428fbd0fa_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49392620916_541beae786_b.jpg"                style="width:100%"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+                style="width:100%"              />
+              <img
+src="https://live.staticflickr.com/65535/49382641132_eee5902ab6_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49382640687_69455020c2_b.jpg"                style="width:100%"
+              />
+            </div>
+            <div class="column">
+              <img
+src="https://live.staticflickr.com/65535/49382641002_27fab192f3_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49397392526_ab82c534e4_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49387646151_6ccca7aba1_b.jpg"                style="width:100%"
+              />
+              <img
+src="https://live.staticflickr.com/65535/49381979763_915452ce6b_b.jpg"                style="width:100%"
+              />
+              <img
+                   src="https://live.staticflickr.com/65535/49392825417_7d74122931_b.jpg"                style="width:100%"
+
+              />
+              <img
+                src="https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+                style="width:100%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
