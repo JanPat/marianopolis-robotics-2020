@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .images {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .images img {
+      width: 40%;
+      border: 5px solid #373c4c;
+      margin: 1%;
+    }
+    .top {
+      height: 100%;
+    }
+    .topBox {
+      bottom: 1em;
+      background-color:#373c4c;
+    }
+    .topBox img {
+      width: 90%;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #prototypeRotation {
+      height: auto;
+    }
+    .buttons {
+      padding: 0em;
+      width: 3em;
+      height: 1.3em;
+      position: absolute;
+      right: 1em;
+      text-align: center;
+      font-size: 1.5em;
+    }
+
+    #leftBtn {
+      width: 45%;
+      height: 100%;
+      background-color: #565A65;
+      float: left;
+    }
+    #rightBtn {
+      width: 45%;
+      height: 100%;
+      background-color: #565A65;
+      float: right;
+    }
+
+    @media screen and (max-width: 800px) {
+      .left{
+        display:none;
+      }
+      .hiddenForMobile img{
+        width: 90%;
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      }
+      .images img {
+        width: 100%;
+        border: 5px solid #373c4c;
+        margin: 1%;
+      }
+      .buttons {
+        float: right;
+        width: 4em;
+        height: 1.3em;
+        margin-top: 1em;
+        display: block;
+        position: relative;
+        margin-left: 1em;
+        text-align: center;
+        margin-left: 2em;
+        margin-bottom: 0.5em;
+      }
+      #leftBtn2 {
+        float: left;
+        width: 45%;
+        background-color: #373c4c;
+        height: 100%;
+      }
+      #rightBtn2 {
+        float: right;
+        width: 45%;
+        background-color: #373c4c;
+        height: 100%;
+      }
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+    var prototypes = [
+      {
+        order: 0,
+        content: `
+<p>
+              <b><i>Telescoping Linear Systems for the Mushroom</i></b>
+            <br/>
+              Our first plan to tackle the mushroom actuators was to have a telescoping 3-level linear system that uses pulleys. The first prototype used extrusion for this. There was a lot of friction between the metal. Once we added some grease, things were sliding more smoothly, but not perfectly. Also, to make sure the linear system did not collapse back into itself while pressing the button, the motor would have to be pulling on the string. This prototype served as a proof of concepts. Later, a group recreated this by replacing some extrusion with VEX metal to make the system lighter.
+            </p>
+            <img src="https://drive.google.com/uc?id=1ME_dTkL8SA0NdS1q2uC7ZiBhkS2HfIeb"/>
+            <p>
+              Following the same design as the initial telescoping linear system, a new one was built with VEX metal for two levels, and extrusion for the bottom level. Also, instead of string, belts were used. Special pulleys with grooves were 3D printed for these belts. The issue with this prototype was that the teeth of the belt were too small and would not always catch the grooves of the pulley attached to the motor. The belt was therefore skipping and the whole system was slow. Friction between levels was also an issue.
+            </p>
+            <img src="https://drive.google.com/uc?id=1e6x68Ffe0imZljmi0nhH-_H7Qy8vlYKg"/>
+`
+      },
+      {
+        order: 1,
+        content: `
+ <p>
+              <b><i>The Arm for the Mushrooms</i></b>
+            <br/>
+Seeing that the telescoping linear systems were not working out so well, a small team started to work on an extending arm that would be able to drop down and hit the furthest mushroom. Before starting a well thought-out prototype, the team tested if VEX motors were strong enough to move a 3 foot long light weight rod. We found a long piece of wood and attached it to a VEX motor. It was found that the motor was powerful enough. For the actual prototype, we used a lightweight broomstick rod and attached it to the VEX motor. To relieve stress on the motor and for a larger reach, we mounted this arm on a rotating base. This allows for the arm to extend out of the robot, and back inside for when it is driving around. After this was done, four limit switches were added: two for checking if the rod was vertical or horizontal, and two for checking if the arm is inside or outside the robot. It is still a little shaky when using it and we fear that the rod might be too weak on impact. For this reason, a team plans on rebuilding the arm with extrusion and a Banebot motor in the near future.            </p>
+            <img src="https://drive.google.com/uc?id=1ME_dTkL8SA0NdS1q2uC7ZiBhkS2HfIeb"
+                 style="border: 5px solid red;"/>
+`
+      },
+      {
+        order: 2,
+        content: `
+  <p>
+              <b><i>A Rotating Block for Flipper</i></b>
+            <br/>
+The first thing we wanted to test was if a rotating mass could hit the carriage with enough force. We tried tests with a block of wood and with a cut out shape with edges, both of which were attached to a drill. Two types of tests were done for each: one where the block is positioned on top of the carriage and has a little less than one rotation to strike it, and one where the motor is running and then approaches the carriage. For the first tests, not enough speed was able to be built for the carriage to travel a significant distance. For the other tests, it was difficult to consistently strike the carriage in the right spot. Also, this still did not produce enough force.            </p>
+            <img src="https://drive.google.com/uc?id=1OfEPVlexKAFd2bzSGIqvlc2N7fIH3RwG"
+                 />
+`
+      },
+      {
+        order: 3,
+        content: `
+  <p>
+              <b><i>A Cam and a Spring</i></b>
+            <br/>
+Another mechanism that was worked on is a spring system that would have a cam push down on a rod with a pivot that would have a spring under it. When the cam rotates, the spring would extend and push the tip of the rod upwards, striking the carriage. We printed a 3d model of the cam and set up the system. Not enough force was generated and the cam would often get stuck.            </p>
+            <img src="https://drive.google.com/uc?id=16CziIsFDrAQoA-8TL4NEAsQ4EIJB6M_B"
+style="width:60%;"
+                 />
+`
+      },
+      {
+        order: 4,
+        content: `
+  <p>
+              <b><i>Crossbow</i></b>
+            <br/>
+Springs were also used in another system. This one consists of a linear system with a rack and pinion. A spring was attached to the top end of the rack. This spring would stretch when the rack is brought down. The idea with this system would be that the gear bringing the rack down would eventually move out of the way because of the gearing set up. When this would happen, we hoped that the rack would snap upwards. However, because of the gearing, the gear touching the rack would rotate outwards, which messed up with the quickness of the rack shooting upwards. The team soon started to design the crossbow: a similar system but where the gear touching the rack would move perpendicular to the rack once the spring is fully stretched downwards. This system generated a lot of force. However, it was hard to deal with friction and keeping everything secure. We also tested this on the arch and carriage and it did not have enough force to send the carriage to the other side.</p>           
+<img src="https://drive.google.com/uc?id=16CziIsFDrAQoA-8TL4NEAsQ4EIJB6M_B"
+style="border: 5px solid red;"
+                 />
+`
+      },
+      {
+        order: 4,
+        content: `
+  <p>
+              <b><i>The Flipper</i></b>
+            <br/>
+After seeing the tests done with the block of wood and the drill, one team worked on a design that would use momentum to their advantage. Velocity affects momentum. However, it takes time for the motors to reach maximum velocity. Also, the tangential velocity of a point in circular motion further away from the center of the circle is larger than that of a point closer. This led to the idea of wrapping a string around a large diameter wheel. The string would wind up enough for the motor to reach maximum speed. Then, when it is fully wound, the string would pull the piece of extrusion under the carriage upwards. 
+    </p>           
+<img src="https://drive.google.com/uc?id=1jm7gfnHAgJiH0ZXNJSeR1LXJIJ43fieX"
+                 />
+<p>This mechanism generates a lot of force. In fact, on one of the first tests, it bent a piece of VEX metal on impact.</p>
+<img src="https://live.staticflickr.com/65535/49396837853_eb5b52f3a1_b.jpg"/>
+<p>One big issue with this mechanism, however, is that the string can get tangled outside of the wheel, which would render the entire system useless. A cage was built around the wheel. But then when we tested it, there was too much friction between the cage and wheel. We then added tubing to help direct the string and made sure that the pulling point on the wheel was transferring the most possible force using concepts of circular motion. Then, instead of a cage, we cut out giant circles that would turn with the wheel to extend the sides of the wheel. While this mechanism is our strongest so far, it may be subject to change.
+    </p>
+<img src="https://live.staticflickr.com/65535/49397329481_4faa7e7347_b.jpg"/>
+`
+      }
+    ];
+
+    var currentPrototype;
+
+    function swap(chosenPrototype) {
+      currentPrototype = chosenPrototype;
+
+      document.getElementById("prototypeRotation").innerHTML =
+        prototypes[currentPrototype].content;
+      if (currentPrototype == 0) {
+        document.getElementById("leftBtn").style.opacity = 0.5;
+        document.getElementById("rightBtn").style.opacity = 1;
+      } else if (currentPrototype == 5) {
+        document.getElementById("rightBtn").style.opacity = 0.5;
+        document.getElementById("leftBtn").style.opacity = 1;
+      } else {
+        document.getElementById("leftBtn").style.opacity = 1;
+        document.getElementById("rightBtn").style.opacity = 1;
+      }
+
+      document.getElementById("prototypeRotation2").innerHTML =
+        prototypes[currentPrototype].content;
+      if (currentPrototype == 0) {
+        document.getElementById("leftBtn2").style.opacity = 0.5;
+        document.getElementById("rightBtn2").style.opacity = 1;
+      } else if (currentPrototype == 5) {
+        document.getElementById("rightBtn2").style.opacity = 0.5;
+        document.getElementById("leftBtn2").style.opacity = 1;
+      } else {
+        document.getElementById("leftBtn2").style.opacity = 1;
+        document.getElementById("rightBtn2").style.opacity = 1;
+      }
+    }
+
+    function change(direction) {
+      if (direction === 1) {
+        /* Right */
+        if (currentPrototype != 5) {
+          swap(currentPrototype + 1);
+        }
+      } else {
+        if (currentPrototype != 0) {
+          swap(currentPrototype - 1);
+        }
+      }
+    }
+  </script>
+  <body onload="swap(0)">
+    <div class="hiddenHeader" onload="swap(0);">
+      <div onclick="window.location='../home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../home51.html'">
+        <h2>
+          Home
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../home.html'">
+        <h2>
+          Back to Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          About
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../school.html'">
+        <p>
+          Mari 51 Base
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../team.html'">
+        <p>
+          Employee Database
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Security Threats
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Lab Work
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../journal.html'">
+        <p>
+          Lab Entries
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../tutorial.html'">
+        <p>
+          Special Projects
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../gallery.html'">
+        <p>
+          Gallery
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Language
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/robot.html'">
+        <p>
+          Français
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../school.html'">
+        <h2>
+          Mari 51 Base
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../team.html'">
+        <h2>
+          Employee Database
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Security Threats
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+            Lab Work
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../journal.html'">
+          <h2>
+            Lab Entries
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../tutorial.html'">
+          <h2>
+            Special Projects
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../gallery.html'">
+          <h2>
+            Gallery
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/robot.html'">
+        <h2>
+          Français
+        </h2>
+      </div>
+      <div onclick="window.location='../home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            R.O.B.O.T
+          </h1>
+          <div class="content">
+            <p>
+              The Mari 51 intel was able to find the plans for the robot that
+              the raiders are planning to use for the raid. The Base decided to
+              rebuild this robot to be able to better understand the raiders’
+              minds.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49284198027_fb3792c514_b.jpg"
+                style="border: 5px solid red;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49284198027_fb3792c514_b.jpg"
+                style="border: 5px solid red;"
+              />
+            </div>
+            <p>
+              <b><i>What does the robot do?</i></b>
+              <br />
+              This robot was designed to be very fast and easy to manoeuver,
+              which is why the H-Drive system is used. Each actuator in the
+              field has a corresponding mechanism on the robot. For the
+              mushrooms, the arm is extended to hit the buttons, for the arch,
+              the flipper winds up and hits the carriage, for the ball and
+              chain, the robot backs up into the actuator on the side of its
+              slope, for the hinged board, either the arm or an extending piece
+              from the robot will hit it, and for the twister, the robot can
+              insert a flap of the actuator inside of its frame to control it
+              from both directions.
+            </p>
+            <p>
+              <b><i>The Drivebase</i></b>
+              <br />
+              The H-Drive system with omni wheels allows for holonomic drive,
+              which is great for driving around the field as fast as possible.
+              We used four 1:20 gearboxes with RS550 motors and a central 1:26
+              gearbox with an RS555 motor. This lets us drive very fast and be
+              able to handle the root easily. While building however, we had to
+              keep weight distribution in mind to be able to properly drive. One
+              thing that did not go as expected for the base was the fact that
+              the central wheel did not always touch the ground. To fix this, we
+              brought down the extrusion the motor was attached to.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49396542678_acbeacf274_b.jpg"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49397247872_1615ec40da_b.jpg"
+              />
+            </div>
+            <p>
+              <b><i>The Arm</i></b>
+              <br />
+              This arm is meant to extend out of the robot to touch the furthest
+              mushroom actuator. It uses three VEX motors and four limit
+              switches. One motor brings the arm into the up position or down to
+              extend either into or out of the robot. The other two motors
+              rotate the arm so that it can extend into the robot for driving
+              around or outside the robot for hitting the mushroom. The arm can
+              also be used to activate the hinged board and to drag the carriage
+              across the arch. One thing that we struggled with was finding a
+              light enough rod to rotate that would not make the torque too
+              great.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49396542678_acbeacf274_b.jpg"
+                style="border: 5px solid red;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49397247872_1615ec40da_b.jpg"
+                style="border: 5px solid red;"
+              />
+            </div>
+            <p>
+              <b><i>The Flipper</i></b>
+              <br />
+              The current flipper mechanism consists of a piece of extrusion
+              around an axle that is attached to a string on one end. The string
+              winds up around a large wheel. The reason for this wheel is that
+              one rotation is not enough for the motor to reach max speed. With
+              the string, the wheel can be rotating while winding up the string
+              until it is taught. Then, the string’s tension will force the
+              flipper piece to flick upwards with a lot of force. The big
+              struggle with this mechanism is making sure that the string does
+              not get tangled anywhere outside the wheel. Currently, we are
+              using a cage to trap in the string to the wheel. This mechanism,
+              however, may be subject to change since the raiders are working on
+              an alternative.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49397277412_79b4ea11d2_b.jpg"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49387646586_e905d20f61_b.jpg"
+              />
+            </div>
+            <p>
+              <b><i>The Twister</i></b>
+              <br />
+              For the twister actuator, two vertical pieces of extrusion were
+              added to the side of the robot. With this, the robot can drive
+              into the actuator and insert the flap in between the two pieces of
+              extrusion. This will allow for the robot to be able to move the
+              actuator front and back. This mechanism was placed on the side of
+              the robot instead of on the front or back so that the robot does
+              not get easily pushed because of its omni wheels.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49396542678_acbeacf274_b.jpg"
+                style="border: 5px solid red;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49397247872_1615ec40da_b.jpg"
+                style="border: 5px solid red;"
+              />
+            </div>
+            <p>
+              <b><i>The Ball & Chain</i></b>
+              <br />
+              The robot’s ball and chain mechanism consists of a slope made of
+              of VEX metal that matches the slope of the actuator. This slope
+              has a bit of a dent in it so that the ball can be held. The idea
+              is that the robot drives towards the actuator and the slope of the
+              robot presses the ball towards the actuator’s sensor.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49396542678_acbeacf274_b.jpg"
+                style="border: 5px solid red;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49397247872_1615ec40da_b.jpg"
+                style="border: 5px solid red;"
+              />
+            </div>
+            <p>
+              <b><i>The Hinged Board</i></b>
+              <br />
+              For the hinged board, in order to get to it first, we used very
+              fast gearboxes and motor combinations. We will also extend the arm
+              outwards so that we have an extra three feet to hit the board
+              with.
+            </p>
+            
+            <div class="hiddenForMobile">
+              <br/>
+              <hr/>
+              <br/>
+              <h2 style="margin:0;">
+                Prototype Rundown
+              </h2>
+              <div class="buttons">
+                
+                
+                <div id="leftBtn2" onclick="change(0);">
+                  &lt;
+                </div>
+                <div id="rightBtn2" onclick="change(1)">
+                  &gt;
+                </div>
+                
+                
+              </div>
+              
+              
+
+              
+
+              <div id="prototypeRotation2"></div>
+            
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="top">
+          <div class="topBox">
+            <h2 style="margin:0;">
+              Prototype Rundown
+            </h2>
+            <div class="buttons">
+              <div id="leftBtn" onclick="change(0);">
+                &lt;
+              </div>
+              <div id="rightBtn" onclick="change(1)">
+                &gt;
+              </div>
+            </div>
+            <div id="prototypeRotation"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
