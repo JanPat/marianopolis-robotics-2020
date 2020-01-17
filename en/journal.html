@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .mobileJournal {
+      display: none;
+    }
+    .top {
+      height: 50%;
+    }
+    .bottom {
+      height: 50%;
+    }
+    .phaseSelect {
+      width: 100%;
+      height: 85%;
+      overflow-y: scroll;
+      position: relative;
+    }
+    .topBox {
+      overflow-y: hidden;
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .phaseSelect::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE and Edge */
+    .phaseSelect {
+      -ms-overflow-style: none;
+    }
+
+    .phaseSelect h3 {
+      margin: 0;
+      padding: 1em;
+    }
+    .phaseSelect h3:hover {
+      background-color: #313D61;
+    }
+    .colored {
+      background-color: #212941;
+    }
+
+    .images {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .images img {
+      width: 40%;
+      border: 5px solid #373c4c;
+      margin: 1%;
+    }
+    @media screen and (max-width: 800px) {
+      .images img {
+        width: 100%;
+        border: 5px solid #373c4c;
+        margin: 1%;
+      }
+      .left,
+      .journalReplace {
+        display: none;
+      }
+
+      .mobileJournal {
+        display: block;
+      }
+      .mobileJournal button {
+        font-size: 1em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+      }
+      .collapsible {
+        background-color: #212941;
+        color: white;
+        padding: 1em;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+      }
+
+      .active,
+      .collapsible:active {
+        background-color: #313D61;
+      }
+
+      
+      .contentC {
+        padding: 0 1em;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #0f162b;
+      }
+      
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+    var journalEntries = [
+      {
+        order: 0,
+        content: `<div><h2>Phase 1 - Recruitment</h2><h3 style = 'margin-bottom:0;'><i>09.03.2019 - Join-a-Club Day</i></h3><p style = 'margin-top:0;'>We put up a booth at the Marianopolis Join-a-Club day to let people know what we do and to recruit interested students. We got over 100 sign-ups.</p><div class='images'><img src='https://live.staticflickr.com/65535/49271081216_be5934dec3_b.jpg'/></div><h3 style = 'margin-bottom:0;'><i>09.10.2019 - First Information Meeting</i></h3><p style = 'margin-top:0;'>During lunch, we held an information meeting for all the applicants where we explained CRC, the competition, the application process and what it is like to be on the Marianopolis Robotics team. Then we did a group activity where we brainstormed potential theme ideas for this year’s competition.              </p><div class='images'><img src='https://live.staticflickr.com/65535/49271086371_9483eed930_b.jpg'/></div><h3 style = 'margin-bottom:0;'><i>09.17.2019 - Second Information Meeting</i></h3><p style = 'margin-top:0;'>All applicants filled out a short Google Form where they would have to give solutions to problems relating to robot, video and kiosk while listening to the team’s favourite song: Everybody Hurts by R.E.M. The preliminary selection for the team was completed by the captains.              </p><div class='images'><img src='https://live.staticflickr.com/65535/49271081306_4bfd283f3c_b.jpg'/><img src='https://live.staticflickr.com/65535/49271081361_34322d0162_b.jpg'/></div></div> `
+      },
+      {
+        order: 1,
+        content: ` 
+<div>
+              <h2>
+                Phase 2 - Planning
+              </h2>
+              <h3 style="margin-bottom:0;">
+                <i>10.24.2019 - First Team Meeting</i>
+              </h3>
+              <p style="margin-top:0;">
+                For the first meeting with the entire team, we spent our lunch
+                period getting to know each other, figuring out who will go to
+                the kickoff, and deciding on a theme. We went through many theme
+                ideas like Shrek, Elon Musk, and Toy Story, but ultimately we
+                chose Area 51 as our theme. We then started to brainstorm kiosk,
+                video, and website ideas for this theme. We also went over the
+                plan and work schedule for the rest of the year.
+              </p>
+              <div class="images"><img src="https://live.staticflickr.com/65535/49282776001_b2b1f9c7a4_b.jpg"/><img src="https://live.staticflickr.com/65535/49282348168_2fb8a822f3_b.jpg"/></div>
+              <h3 style="margin-bottom:0;"><i>10.28.2019 - Kickoff</i></h3>
+              <p style="margin-top:0;">
+                10 members from the robotics team went to Vanier to attend the
+                Kickoff event. We learned what the game was, asked questions,
+                and took the dimensions of the playing field. After that, we
+                started discussing strategies and potential robot designs for
+                the competition.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49140506187_83e47e6e38_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>10.29.2019 - Second Team Meeting</i>
+              </h3>
+              <p style="margin-top:0;">
+                For the second team meeting, we went over what happened at the
+                kickoff for all the members who could not attend. We debated
+                potential game strategies, including if it was better or worse
+                to be the first one at the hinge board, and robot mechanisms for
+                the entire lunch period. After figuring out potential game strategies, we broke off into subteams and designed potential robots. Big topics that each design had to address was which type of wheels and drive system should we use (tank drive, mecanum wheels…), whether we should double up on safety mechanisms, and whether we should deploy a smaller robot to race to the hinge board at the start of the round. While mecanum wheels are better for maneuvering, they are slower than the other options. We also came up with the idea of having backup systems should one fail. For example, the arch actuator could be activated with the robot’s potential arm or the robot’s potential flap. We also came to the conclusion that for the ball and chain actuator, we will be using the fixed shape of the robot’s body and align it so that it is parallel to the ball and chain contraption. After we made our initial designs, each subteam pitched it to the whole team. Then, we swapped teams and made 5 more new designs to push ourselves to think out of the box.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49282980037_3bbd18a016_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;"><i>11.01.2019 - School Closure and Actuator Building</i></h3>
+              <p style="margin-top:0;">
+                Because of a power outage, classes were cancelled but
+                since we just love working so much, members of the team spent
+                the day packing up the robot room for our move, discussing game
+                strategies, and starting to build the ball and chain actuator
+                for us to test on. We also agreed on a general plot structure
+                for the video script.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49282772366_243e38863a_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49282874231_7c3b79f9ec_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;"><i>11.07.2019 - Third Team Meeting and Clean Up</i></h3>
+              <p style="margin-top:0;">
+                At today’s meeting, we debated different mechanisms for our
+                robot and analyzed the pros and cons of different drive systems.
+                We needed a fast system that can be maneuvered easily and that
+                can counteract pushing from external sources. We decided to use
+                the H-Drive. We also discussed how we should tackle the arch
+                actuator since we are concerned that a flipper mechanism will
+                not be powerful enough to send the carriage all the way across.
+                After classes ended, we went to the robot room and took apart
+                last year’s robot and packed away all our tools and equipment
+                since we are moving to another room in the school.
+              </p>
+              <div class="images"><img src="https://live.staticflickr.com/65535/49282299263_a54e46347a_b.jpg"/></div>
+              <h3 style="margin-bottom:0;"><i>11.14.2019 - Fourth Team Meeting</i></h3>
+              <p style="margin-top:0;">
+                In this meeting we finalized our approach and plans for the
+                kiosk, video, website, and robot. We currently have a plot
+                outline for the video and plan to start filming some scenes at
+                the end of the month. The website has an initial design but
+                needs to be worked on and all the content has to be written. We
+                will also start to buy materials for the kiosk soon. Also, we
+                decided on a final logo design. Finally, we have drawings,
+                measurements and designs for our robot, as well as backup
+                designs in case our original plans do not work.
+              </p>
+              <div class="images"><img src="https://live.staticflickr.com/65535/49282304323_19d9bf0e87_b.jpg"/><img src="https://live.staticflickr.com/65535/49282298458_0cd783da01_b.jpg"/></div><div class="images"><img src="https://live.staticflickr.com/65535/49283213372_66cba20781_b.jpg"/><img src="https://live.staticflickr.com/65535/49282775816_251364f679_b.jpg"/></div></div>`
+      },
+      {
+        order: 2,
+        content: `
+        <div id="journalReplace">
+              <h2>
+                Phase 3 - Getting Started
+              </h2>
+
+              <h3 style="margin-bottom:0;">
+                <i>11.24.2019 - Kiosk Walls and Robot Base</i>
+              </h3>
+              <p style="margin-top:0;">
+                During our lunch period, we all got together and put the
+                exterior kiosk walls up. Then, we officially started the construction of the robot. After modelling the base on Autodesk and figuring out the dimensions needed, we started making the frame of the robot. After, we started planning how to properly fix the Banebot motors to the frame. We decided to make a lower base by having the middle of the wheels rest above the bottom of the frame. However, we encountered a problem with our mounts. The mounts that were made touch the ground before the wheel does so they will have to be modified so that the wheels touch the ground. Solutions we explored included rotating the mount so that the long part rests on the side instead of the bottom, redesigning and reprinting new mounts, and cutting the existing ones so that they are shorter than the wheels. After discussing, we decided to cut the mounts. We also decided to use different gearboxes for our motors will mount those as soon as they come.
+
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49283274307_627c7b95cd_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49283068926_c26d7d59fe_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>12.18.2019 - Filming and Painting</i>
+              </h3>
+              <p style="margin-top:0;">
+                Today, half of the team worked on doing the first coat of paint
+                on the kiosk while the others went around school and filmed the
+                first part of the video. We received many weird stares while
+                running around the school in tinfoil hats. We also filmed our
+                first tutorial: How to Build a Tinfoil Hat. At the end of the
+                day, we worked on a list of things that needed to be bought for
+                our January work days.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49283981157_7096910b31_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49283981097_b26e72c8f5_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>12.19.2019 - Prototyping the Linear System</i>
+              </h3>
+              <p style="margin-top:0;">
+                Today, three sub-teams were formed to make different versions of
+                the linear system to hit the mushroom actuators. One of the systems relied on a telescoping mechanism that uses pulley and strings. A big issue encountered was the fact that the string kept slipping from the pulleys. Another problem with this design was that the system would push back in when it hits something. To solve this, we figured out that both ends of the pulley would have to be pulled to ensure that the tip of the system would not slide back in. The second system consisted of a rack and pinion mechanism where the rack would be made out of a PVC pipe with cut out grooves. After measuring and starting to cut the grooves of the PVC, we found VEX timing belts that matched the teeth of one of our gears. To save time, we decided to glue the belt to the PVC pipe instead of cutting grooves in. A problem with this when tested was that the PVC would rotate. We then attached that same belt to extrusion and the rotation problem was eliminated. The third team worked on a design that can be seen as a combination of the two others. It consists of a telescoping rack and pinion mechanism. Unfortunately that system did not go far in prototyping since we are waiting for the right parts to be shipped in January.  Some members on the team also worked on the base since new
+                motor mounts had to be cut for the lower base design. The
+                website team also worked on finalizing a new design involving a
+                hidden Mari 51 website inside of a typical Marianopolis Robotics
+                website. The video team also finished filming the first part of
+                the video by completing the Naruto running training montage
+                scene. Other than that, the kiosk team finished painting the
+                walls and started to construct a new wall for the alien autopsy
+                room.
+              </p>
+              <div class="images">
+                <img
+                  src="https://drive.google.com/uc?id=1ME_dTkL8SA0NdS1q2uC7ZiBhkS2HfIeb"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49283915161_8166a2c64d_b.jpg"
+                />
+              </div>
+
+              <h3 style="margin-bottom:0;">
+                <i>12.20.2019 - Prototyping the Flipper</i>
+              </h3>
+              <p style="margin-top:0;">
+                The day started off with some people working on planning out
+                where our electronics and wires would go and mounting plexiglass
+                to the frame appropriately. Others on the robot team divided
+                into subteams and got started on different flipper designs.  For the first design, we did a CAD of a flipper design and then cut out a prototype out of wood. It resembled a circle with two extruding parts meant to hit the carriage of the arch. This design did not work since not enough vertical force was produced and the carriage was skipping and only displacing around 3 inches. We then tried replacing the piece with a rectangular block of wood rotation on one of its ends to mimic a baseball bat swinging. While this was better than the previous design, the carriage was still not being displaced enough.  This was because the block was sometimes not hitting the carriage in the right way. We then went back to the drawing board and tried to figure out a system best for producing the most amount of momentum. For this we need mass and speed. Our design was inspired by leg kicks: muscles contract and bottom of the leg rotates about the knee. We worked on two designs where a rope attached to the end of extrusion would spin around a motor until the rope would be tight and then once this would happen, the extrusion would snap and hit the carriage. The first design had the extrusion start on the same height as the carriage, and the other had the extrusion going downwards. We figured that the motor winding the string up would allow it to have the time to reach maximum speed. We did not test these designs yet but we will in January. Other than
+                that, the kiosk team finished mounting the extra wall and
+                started researching how to add wallpaper to the walls. At the
+                end of the day, the team made a list of things to do during the
+                work break as well as a list of things to purchase so that we
+                have them in January.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49284198027_fb3792c514_b.jpg"
+                />
+                <img
+                  src="https://drive.google.com/uc?id=1OfEPVlexKAFd2bzSGIqvlc2N7fIH3RwG"
+                />
+              </div>
+            </div>`
+      },
+      {
+        order: 3,
+        content: `
+            <div id="journalReplace">
+              <div>
+                <h2>Phase 4 - The Break</h2>
+                <h3 style="margin-bottom:0;">
+                  <i>Website</i>
+                </h3>
+                <p style="margin-top:0;">
+                  Before the break, the design of the website was more or less figured out. The fake Marianopolis Robotics page was made but none of the other pages were made yet. The first thing that was done was a basic page design and layout that was responsive for any screen size. Once this was done, we copied this basic design to all the pages for the english side of the website. The files are saved on GitLab while Glitch was used to visualize the development of the website pages. Then, each page was made and the basic design was modified for each page. As we went along, images were edited on Photoshop and 3d models of the aliens were made on Blender. At first it was difficult to show the models on the website, but we eventually found a free online STL viewer (www.viewstl.com) that let us embed the model into the site. Another ongoing difficulty was properly formatting the website on mobile phones to have all the content present but still keep the website looking nice and not too cluttered. To do this, sometimes it was required to write brand new CSS for certain website pages, like the Employee Database page. By the end of the break, all the page designs were done and all there was left to do was to finish writing website content.
+                </p>
+                <div class="images">
+                  <img
+                    src="https://live.staticflickr.com/65535/49374772352_0dcf7b93a1_b.jpg"
+                  />
+                  <img
+                    src="https://live.staticflickr.com/65535/49374114533_f2185b0ab8_b.jpg"
+                  />
+                </div>
+                <h3 style="margin-bottom:0;">
+                  <i>Kiosk Keycard Scanner</i>
+                </h3>
+                <p style="margin-top:0;">
+                  The kiosk will have a keycard scanner. The key card scanner that we built will use an Arduino with an RFID card detector. The sensor will detect the ID of the card and will display a greeting message corresponding to the user who scanned it. 2 LEDs are used to indicate if the door is “locked” or “unlocked”. The electronics will be placed into a 2 piece 3D printed enclosure. The reason for the enclosure to be printed in two pieces is to more easily have the mounting screws to the kiosk hidden. The front piece of the enclosure is held on with friction and/or magnets.
+                </p>
+                <div class="images">
+                  <img
+                    src="https://drive.google.com/uc?id=1ORu6opiuFaydmDsgdoOgzL321eUOOHk8"
+                  />
+                </div>
+              </div>          
+            </div>
+`
+      },
+      {
+        order: 3,
+        content: `
+            <div id="journalReplace">
+              <h2>
+                Phase 5 - Post-Break Work
+              </h2>
+
+              <h3 style="margin-bottom:0;">
+                <i>01.06.2020 - Getting Back to Work</i>
+              </h3>
+              <p style="margin-top:0;">
+               Today was the first day back from the break. In the morning, the team split into multiple sub groups to work on different tasks during the day. The video team worked on starting to edit the first scenes and made a list of everything that needed to be fixed for potential reshoots. In the robot room, one group worked on prototyping a better version of the winding rope ‘leg’ mechanism to hit the carriage of the arch actuator. It was found out that winding the string around a wheel with a larger diameter created more of the desired snap than simply just winding the string around the motor, which was comparably slow. Another team worked on a new design during the break. It consists of a spring and cam system. The cam would push down on a piece, which would increase the elastic potential energy of the spring. When the cam rotates and releases the piece, the spring would extend and push up the piece, which would be rotating about a pivot point. This prototype still has to be tested with proper springs. Another group worked on a cleaner version of the telescoping linear system designed before the break. This one uses VEX parts and is therefore lighter, which ultimately helps the center of gravity. Another group worked on assembling the team’s new 3d printer and doing calibration tests. By the end of the day, they printed pieces for the linear system that were a better size for the pieces being used. Finally, the kiosk team worked on planning out where different parts of the kiosk would go and they installed the shelves for mounting the alien artefacts.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49376375616_d708c2afc9_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49375923178_cbf2de1c63_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>01.07.2020 - More Prototyping</i>
+              </h3>
+              <p style="margin-top:0;">
+                Today, the kiosk team put up the wallpaper of our extra wall divide and got started on the build of the stasis tube. One of the robot teams that designed the cam and spring system yesterday 3d printed the cam and began tests with this. Another team finished the first prototype of the winding leg mechanism for the flipper. It worked so the proof of concepts was complete. That team began working on a modular mechanism that could be easily mounted to the robot. The team also began to work on planning the wiring of the robot and we installed temporary battery mounts to the robot. In the afternoon, we took team pictures and filmed some scenes for the video.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49376375491_9cbb23ae7a_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49375922143_10deedb370_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>01.08.2020 - A Big Building Day</i>
+              </h3>
+              <p style="margin-top:0;">
+                By the end of the day, most of the frame of the stasis tube for the kiosk was built. We also decided that we wanted to bring forward the extra kiosk wall for the alien autopsy room so we had a team that worked on moving the wall. The kiosk team also put up the screen mounts. During the day, different robot subteams worked on various parts of the robot. One group worked on properly installing the fifth motor to the h-drive base. Another worked on calculating, measuring and cutting the pieces needed to make the system that will interact with the ball and chain actuator. Wiring was also worked on. The flipper leg mechanism was also worked on. Tests were done on where the string should pull happen to produce the most force. Also, we began to work on a structure that would prevent the string from tangling or getting caught in something. The video team refilmed the first couple scenes of the video due to an error found.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49375921928_82279108b1_b.jpg"
+                />
+              </div>
+
+              <h3 style="margin-bottom:0;">
+                <i>01.09.2020 - Continuing to Prototype</i>
+              </h3>
+              <p style="margin-top:0;">
+                Today was dedicated to moving forward on the projects started yesterday. The leg was completed and tested. However, it was very builty and took up a lot of space. The wiring of motor controllers was begun. The team also worked on solving the friction problem with the linear system by using grease and more tension. The kiosk team worked on the stasis tube and some people went to IKEA to get more shelves and a desk for the kiosk.
+              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49376374701_018a4b7629_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>01.10.2020 - Altering Plans</i>
+              </h3>
+              <p style="margin-top:0;">
+Evaluating what happened yesterday, we decided to redesign the leg to make it less bulky. This is an issue because we want the robot to be as light as it can be and we want the weight to be distributed. We worked on different ways to cover the wheel so that the string does not get caught on anything it should not get caught on. We also rethought our use of the linear system. A few people began working on an arm to drag the carriage across the arch should the flipper not work and realized that if the arm is extended, it can also hit the furthest mushroom actuator. Other than that, the wiring of the base drive motors was completed and the new gearboxes were properly put in place. The kiosk team continued to work on the robot and started thinking about props related to aliens for the competition. The website team also started finalizing page designs and translating pages to french.              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49375921263_da43d0c79f_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49376374506_d2ff28d274_b.jpg"
+                />
+              </div>
+              <h3 style="margin-bottom:0;">
+                <i>01.11.2020 - The Arm and Crossbow</i>
+              </h3>
+              <p style="margin-top:0;">
+Today, the arm was completed and all four of the limit switches were installed on it. The arm now has to be programmed. We also plan on adding a linear system that will help the arm push up to carry the carriage along the arch. Work was continued on the spinning wheel flipper redesign. A test was done for the spring and linear flipper mechanism but unfortunately it did not pass the proof of concept since the release was not powerful enough because of the gears. Another team started to work on an alternative flipper mechanism that resembles a crossbow. The kiosk team continued their work on the stasis tube and they cut out a window and painted the second extra wall of the kiosk.              </p>
+              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49376579367_6c049de0ab_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49375920918_03360a513e_b.jpg"
+                />
+              </div>
+<h3 style="margin-bottom:0;">
+                <i>01.13.2020 - Programming, Wiring and Workshops</i>
+              </h3>
+              <p style="margin-top:0;">
+We continued work on soldering the wires for the drive motors and motor controllers and an initial h-drive program was uploaded. We also programmed the arm using all four limit switches. Some modifications have to be made to the program and arm so that the arm does not slip and so that the limit switches always read the correct value. Work was also continued on the winding string flipper leg. We ran a tube through the wheel and supported it so that the string has a guide around the wheel and has less of a chance of getting tangled. We are still troubleshooting this but so far with the added tubes the string is tangling less. The video team filmed the game description scene and worked on editing different shots. The kiosk team completed the main build for the stasis tube. The website is almost complete and we had our first rounds of proofreadings and error checkings. At the end of the day some of us attended the CRC workshop on presentations.              <div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49382698926_54e18f08bd_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49382698686_f5b61ce525_b.jpg"
+                />
+              </div>
+<h3 style="margin-bottom:0;">
+                <i>01.14.2020 - Second to Last Official Work Day</i>
+              </h3>
+              <p style="margin-top:0;">
+Today the kiosk team worked on painting the stasis tube and building our second extra wall with the window inside of it. The electrical team finished up the wiring and redid some connections for the drive base. The flipper team continued to work on ways to prevent the tangling of the string. We used chloroplast to hold in the string by making a ring around the wheel. This add on still has to be stress tested. The crossbow team continued their work on their mechanism. One problem that they ran into in the morning was that the vex motor was not strong enough to bring the spring down. However, we realized that because of the cooldown time of the arch actuator, we could play with gearing and just have the crossbow reload slower, but still in the downtime of the actuator. By the end of the day, the prototype seemed to be working. The team working on the arm started reinforcing it to make sure that it runs as smoothly as possible. The website team also continued work on the space invaders game for the website.
+<div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49387774372_84bda2fa26_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49387774172_e5e598d2ae_b.jpg"
+                />
+              </div>
+<h3 style="margin-bottom:0;">
+                <i>01.15.2020 - Last Official Work Day</i>
+              </h3>
+              <p style="margin-top:0;">
+We continued to work on all the mechanisms. Wiring was complete and we tested the drive base. There is an issue with the middle wheel not always touching the ground and we are currently figuring out ways to bring it down. We also realized that not all of the drive motors are the same. After lunch, we mounted the arm and leg so that they can be present in the robot description scene of the video. Then, the video team filmed the last two scenes of the video and the rest of the group cleaned up our workspace. After that, our friends from Vanier came over to do a motor and gearbox exchange since we each had parts the other team needed. To finish off the day, we put up the final extra wall of the kiosk.<div class="images">
+                <img
+                  src="https://live.staticflickr.com/65535/49392813297_29cc0f1d71_b.jpg"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49392608871_ee9b4954d0_b.jpg"
+                />
+              </div>
+            </div>
+`
+      },
+    ];
+
+    function showJournal(clicked) {
+      document.getElementById("journalReplace").innerHTML =
+        journalEntries[clicked].content;
+      document.getElementById('toScrollTo').scrollIntoView();
+    }
+
+    function mobiles(opened) {
+      if (opened === 0) {
+        document.getElementById("mobile0").innerHTML =
+          journalEntries[opened].content;
+      } else if (opened === 1) {
+        document.getElementById("mobile1").innerHTML =
+          journalEntries[opened].content;
+      } else if (opened === 2) {
+        document.getElementById("mobile2").innerHTML =
+          journalEntries[opened].content;
+      } else if (opened === 3) {
+        document.getElementById("mobile3").innerHTML =
+          journalEntries[opened].content;
+      } else if (opened === 4) {
+        document.getElementById("mobile4").innerHTML =
+          journalEntries[opened].content;
+      } else {
+        document.getElementById("mobile5").innerHTML =
+          journalEntries[opened].content;
+      }
+    }
+  </script>
+  <body onload="showJournal(0)">
+    <div class="hiddenHeader">
+      <div onclick="window.location='../home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../home51.html'">
+        <h2>
+          Home
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../home.html'">
+        <h2>
+          Back to Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          About
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../school.html'">
+        <p>
+          Mari 51 Base
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../team.html'">
+        <p>
+          Employee Database
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Security Threats
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Lab Work
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../journal.html'">
+        <p>
+          Lab Entries
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../tutorial.html'">
+        <p>
+          Special Projects
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../gallery.html'">
+        <p>
+          Gallery
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Language
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/journal.html'">
+        <p>
+          Français
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../school.html'">
+        <h2>
+          Mari 51 Base
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../team.html'">
+        <h2>
+          Employee Database
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Security Threats
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+            Lab Work
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../journal.html'">
+          <h2>
+            Lab Entries
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../tutorial.html'">
+          <h2>
+            Special Projects
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../gallery.html'">
+          <h2>
+            Gallery
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/journal.html'">
+        <h2>
+          Français
+        </h2>
+      </div>
+      <div onclick="window.location='../home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+    <div class="main">
+      <div class="right">
+        <div class="rightBox" style="padding:0;">
+          <span id="toScrollTo"></span>
+          
+          <div class="content" style="margin:1em;">
+            <h1 style="margin:0;" >
+            Lab Entries
+          </h1>
+            <p>
+              Select a work phase to read in detail what the Marianopolis
+              Robotics Team were working on during their 2019-20 season. The
+              following web-logs document the recruitment of new members to the
+              team all the way up to the last work day. They also explain and
+              show the effort and time put into making their robot, kiosk,
+              video, website, and tutorials.
+            </p>
+            <hr />
+
+            <div class="mobileJournal">
+              <button class="collapsible" onclick="mobiles(0)">
+                Phase 1 - Recruitment
+              </button>
+              <div class="contentC" id="mobile0"></div>
+              <button class="collapsible" onclick="mobiles(1)">
+                Phase 2 - Planning
+              </button>
+              <div class="contentC" id="mobile1"></div>
+              <button class="collapsible" onclick="mobiles(2)">
+                Phase 3 - Getting Started
+              </button>
+              <div class="contentC" id="mobile2"></div>
+              <button class="collapsible" onclick="mobiles(3)">
+                Phase 4 - The Break
+              </button>
+              <div class="contentC" id="mobile3"></div>
+              <button class="collapsible" onclick="mobiles(4)">
+                Phase 5 - Post-Break Work
+              </button>
+              <div class="contentC" id="mobile4"></div>
+              <button class="collapsible" onclick="mobiles(5)">
+                Phase 6 - Finalizing
+              </button>
+              <div class="contentC" id="mobile5"></div>
+            </div>
+
+            <div id="journalReplace" class="journalReplace">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="top">
+          <div class="topBox">
+            <h2 style="margin:0;">
+              Select a Work Phase
+            </h2>
+            <br />
+            <div class="phaseSelect">
+              <h3 class="colored" onclick="showJournal(0)">
+                Phase 1 - Recruitment
+              </h3>
+              <h3 onclick="showJournal(1)">Phase 2 - Planning</h3>
+              <h3 class="colored" onclick="showJournal(2)">
+                Phase 3 - Getting Started
+              </h3>
+              <h3 onclick="showJournal(3)">Phase 4 - The Break</h3>
+              <h3 class="colored" onclick="showJournal(4)">
+                Phase 5 - Post-Break Work
+              </h3>
+              <h3 onclick="showJournal(5)">Phase 6 - Finalizing</h3>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="bottomBox" style="border:none;">
+            
+<iframe  src="https://www.youtube.com/embed/vrQmx5DEjOE?" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+        style="width:100%;display:block;margin-top:auto;margin-bottom:auto; margin: 0 auto;height:100%;"
+        ></iframe>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var contentC = this.nextElementSibling;
+          if (contentC.style.maxHeight) {
+            contentC.style.maxHeight = null;
+          } else {
+            contentC.style.maxHeight = contentC.scrollHeight + "em";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
