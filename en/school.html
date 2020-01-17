@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="general.css" rel="stylesheet" />
+    <!--
+Thank you to viewstl.com for the free online STL viewer
+https://www.viewstl.com/embed/
+
+SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
+-->
+  </head>
+  <style>
+    .images, .images2 {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+        
+    .images img {
+      width: 40%;
+      border: 5px solid #373c4c;
+      margin: 1%;
+    }
+    
+    .images2 img {
+      width: 60%;
+      border: 5px solid #373c4c;
+      margin: 1%;
+    }
+
+    
+    .top {
+      height: 65%;
+    }
+    .bottom {
+      height: 35%;
+    }
+    .socialImages {
+      width: 100%;
+      text-align: center;
+    }
+    .socialImages img {
+      max-width: 20%;
+      margin: 1%;
+    }
+    .bottomBox h2 {
+      width: 100%;
+    }
+    .bottomBox {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .socialImages img:hover {
+      -webkit-filter: drop-shadow(0px 0px 5px white);
+      filter: drop-shadow(0px 0px 5px white);
+    }
+
+    #alienRotation {
+      height: auto;
+    }
+    #alienRotation img {
+      border: 0;
+      margin: 0;
+      width: 50%;
+      margin-left:25%;
+      height: 100%;
+      min-height: 30vh;
+      display:none;
+    }
+    #alienRotation iframe {
+      border: 0;
+      margin: 0;
+      width: 50%;
+      margin-left:25%;
+      height: 100%;
+      min-height: 30vh;
+      display:block;
+    }
+    .buttons {
+      padding: 0em;
+      width: 3em;
+      height: 1.3em;
+      position: absolute;
+      right: 1em;
+      text-align: center;
+      font-size: 1.5em;
+    }
+
+    #leftBtn {
+      width: 45%;
+      height: 100%;
+      background-color: #373c4c;
+      float: left;
+    }
+    #rightBtn {
+      width: 45%;
+      height: 100%;
+      background-color: #373c4c;
+      float: right;
+    }
+   
+  
+
+
+    @media screen and (max-width: 800px) {
+      .buttons{
+        float:right;
+        width:4em;
+        height:1.3em;
+        margin-top:1em;
+        display:block;
+        position:relative;
+        margin-left:1em;
+        text-align:center;
+        margin-left:2em;
+        margin-bottom:0.5em;
+      }
+      #leftBtn2{
+        
+        float:left;
+        width:45%;
+        background-color: #373c4c;
+        height:100%
+      }
+      #rightBtn2{
+        
+        float:right;
+        width:45%;
+        background-color: #373c4c;
+        height:100%;
+        
+      }
+
+      .images img {
+        width: 100%;
+        border: 5px solid #373c4c;
+        margin: 1%;
+      }
+      .images2 img {
+        width: 100%;
+        border: 5px solid #373c4c;
+        margin: 1%;
+      }
+      .left {
+        display: none;
+      }
+
+      #alienRotation2 iframe {
+        display: none;
+      }
+      #alienRotation2 img {
+        display: block;
+        width: 80%;
+        margin-left: 10%;
+      }
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+
+    var alienBank = [
+      {
+        order: 0,
+        content: `              <h3 style="margin-bottom:0;">
+                <i>Grumo Dentata</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                Discovered in winter 2019 by lead scientist Janvi Patel, the
+                <i>Grumo Dentata</i> is a parasitic organism that lives in
+                acidic environments. The organism stands at 5 inches tall but
+                has the ability to expand over ten times its resting height.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49343694627_b12955573a_o.png"
+              />
+
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1pBm-tRTtVrZfeDVFi0sp2xwCQOdQuume&rotation=fixed&clean=yes&noborder=yes&orientation=bottom&bgcolor=transparent&shading=smooth"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                As the organism is new to the laboratory, extensive tests are
+                still being done. The average lifespan of the
+                <i>Grumo Dentata</i> is 10 days. The organism replicates itself
+                once inside of the host. The host tends to live for 3 days after
+                being exposed to the parasite.
+              </p>`
+      },
+      {
+        order: 1,
+        content: `<h3 style="margin-bottom:0;">
+                <i>Occhio Corno</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                The <i>Occhio Corno</i> is one of the oldest aliens in the Mari
+                51 alien base. It was discovered in 2016 by research scientist
+                Ninja Song.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49343701712_e0ae53e202_o.png"
+              />
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1Tn04G7FMSb3AryyVGVYF52EPAyvQftkW&noborder=yes&clean=yes&shading=smooth&rotation=fixed&orientation=bottom&bgcolor=transparent"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                While the organism has seven eyes, it mainly uses echolocation
+                to navigate about its surroundings. In an experiment conducted
+                in 2018, it was discovered that the
+                <i>Occhio Corno</i> dissolves when exposed to large amounts of
+                sulfur.
+              </p>`
+      },
+      {
+        order: 2,
+        content: `<h3 style="margin-bottom:0;">
+                <i>Albero Corallo</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                Discovered in 2018 by lead research scientist, Leftraru
+                Gonzalez-Tucas, the <i>Albero Corallo</i> is the
+                extraterrestrial equivalent to coral.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49343505281_f25948a108_o.png"
+              />
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1jdbhvEROoofDmwXDQFHauUk-gGiqh_OH&bgcolor=transparent&shading=smooth&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                The <i>Albero Corallo</i> can only live in moist environments
+                that contain high amounts of argon gas. The organism must also
+                be kept in temperatures ranging from 80 to 100 degrees Celsius.
+                For these reasons, the <i>Albero Corallo</i> is one of the
+                base's most high risk and securely contained organisms.
+              </p>`
+      },
+      {
+        order: 3,
+        content: `<h3 style="margin-bottom:0;">
+                <i>Asta Dentata</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                The <i>Asta Dentata</i> was discovered in 2018 by lead
+                researcher Jason Wang. It was found alive in the digestive
+                system of a deceased organism that Wang was doing an autopsy on.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49359270527_088a1aa2a8_o.png"
+              />
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1vtv-K5ZBzJPiu9l5YsefcyRIEaOzmHh8&bgcolor=transparent&shading=smooth&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                The organism is a slow moving predatory alien that will
+                terminate any living being that eats it. From the inside out.
+                The body of the <i>Asta Dentata</i> is covered with rows of
+                sharp, ivory-like teeth that will latch on to and rip all tissue
+                it comes into contact with.
+              </p>`
+      },
+      {
+        order: 4,
+        content: `<h3 style="margin-bottom:0;">
+                <i>Polpo Carino</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                The <i>Polpo Carino</i> was found by accomplished research
+                scientist Anh-Khoa Chau-Vo in 2017. Its harmless looks often mislead its prey. The <i>Polpo Carino</i> is one of the
+                laboratory's most dangerous organisms.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49343043743_86c4776c4d_o.png"
+              />
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1IB3DM86yxFfEyXuHVvJg_TqiNVEtZO6K&bgcolor=transparent&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                The <i>Polpo Carino</i> replicates every two weeks and can spawn
+                over 40 offspring in its lifespan. This organism must be
+                contained in a specialized container because of its dangerous
+                and harmful nature. In 2019, the organism attacked one of the
+                base's top researchers, who was then hospitalized for many
+                weeks.
+              </p>`
+      },
+      {
+        order: 5,
+        content: ` <h3 style="margin-bottom:0;">
+                <i>Mille Facce</i>
+              </h3>
+              <p style="margin-top:0;margin-bottom:0.1em;">
+                The <i>Mille Facce</i> was discovered in Milan, Italy in 2018 by
+                researcher Jessica Macknofsky. It absorbs its prey and has the
+                tendency to display a face on its body for every organism eaten.
+              </p>
+              <img
+                src="https://live.staticflickr.com/65535/49343036648_53533ff9c7_o.png"
+              />
+              <iframe
+                id="vs_iframe"
+                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1JRNaAiHOb4uDDuVcYl-ZaikN2IGUmXwY&noborder=yes&clean=yes&rotation=fixed&orientation=bottom&shading=smooth&bgcolor=transparent"
+                style=""
+              ></iframe>
+              <p style="margin-top:0.1em;">
+                A full grown <i>Mille Facce</i> organism can grow to up to 8
+                feet in height but at the time of birth, they measure only a
+                couple of inches tall. The lifespan of the <i>Mille Facce</i> is
+                1.5 years and the organism spends most of its life in its adult
+                development stage.
+              </p>`
+      }
+    ];
+
+    var currentAlien;
+
+    function swap(chosenAlien) {
+      currentAlien = chosenAlien;
+      document.getElementById("alienRotation").innerHTML =
+        alienBank[currentAlien].content;
+      if (currentAlien == 0) {
+        document.getElementById("leftBtn").style.opacity = 0.5;
+        document.getElementById("rightBtn").style.opacity = 1;
+      } else if (currentAlien == 5) {
+        document.getElementById("rightBtn").style.opacity = 0.5;
+        document.getElementById("leftBtn").style.opacity = 1;
+      } else {
+        document.getElementById("leftBtn").style.opacity = 1;
+        document.getElementById("rightBtn").style.opacity = 1;
+      }
+      document.getElementById("alienRotation2").innerHTML =
+        alienBank[currentAlien].content;
+      if (currentAlien == 0) {
+        document.getElementById("leftBtn2").style.opacity = 0.5;
+        document.getElementById("rightBtn2").style.opacity = 1;
+      } else if (currentAlien == 5) {
+        document.getElementById("rightBtn2").style.opacity = 0.5;
+        document.getElementById("leftBtn2").style.opacity = 1;
+      } else {
+        document.getElementById("leftBtn2").style.opacity = 1;
+        document.getElementById("rightBtn2").style.opacity = 1;
+      }
+    }
+
+    function change(direction) {
+      if (direction === 1) {
+        /* Right */
+        if (currentAlien != 5) {
+          swap(currentAlien + 1);
+        }
+      } else {
+        if (currentAlien != 0) {
+          swap(currentAlien - 1);
+        }
+      }
+    }
+  </script>
+  <body onload="swap(0);">
+    <div class="hiddenHeader">
+      <div onclick="window.location='../home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../home51.html'">
+        <h2>
+          Home
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../home.html'">
+        <h2>
+          Back to Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          About
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../school.html'">
+        <p>
+          Mari 51 Base
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../team.html'">
+        <p>
+          Employee Database
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Security Threats
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Lab Work
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../journal.html'">
+        <p>
+          Lab Entries
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../tutorial.html'">
+        <p>
+          Special Projects
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../gallery.html'">
+        <p>
+          Gallery
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Language
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/school.html'">
+        <p>
+          Français
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../school.html'">
+        <h2>
+          Mari 51 Base
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../team.html'">
+        <h2>
+          Employee Database
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Security Threats
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+            Lab Work
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../journal.html'">
+          <h2>
+            Lab Entries
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../tutorial.html'">
+          <h2>
+            Special Projects
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../gallery.html'">
+          <h2>
+            Gallery
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/school.html'">
+        <h2>
+          Français
+        </h2>
+      </div>
+      <div onclick="window.location='../home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            The Mari 51 Secret Alien Base
+          </h1>
+          <div class="content">
+            <p>
+              The secret Mari 51 Base is disguised as Marianopolis College, a
+              private CEGEP located at 4873 Westmount Ave, Westmount, Quebec H3Y
+              1X9 since 2007. While the college was founded in 1908, the base
+              has only been at its current location for almost 13 years. With
+              its twelve wings, various science and computer laboratories, and
+              its proximity to the Vendome and Villa Maria metro stations, this
+              location is perfect for the undercover base.
+            </p>
+            <div class="images2">
+              <img
+                src="https://live.staticflickr.com/65535/49287916718_baa9300080_b.jpg"
+                  
+              />
+              
+            </div>
+
+            <p>
+              While the college is used for base research in extraterrestrial
+              matters, it is also a fully functioning CEGEP where over 2100
+              students study. It offers various pre-university programs that
+              last two to three years in the sciences, arts, and social
+              sciences. These programs include Health Sciences, Pure and Applied
+              Sciences, Arts and Science, Liberal Arts, Social Sciences and
+              Music. Honours options are available for some of these programs as
+              well.
+            </p>
+            <p>
+              Marianopolis is also the only college that offers six certificates
+              focusing on different social themes that any student can earn
+              before graduating. These certificates are the environmental
+              studies certificate, the gender sex/uality certificate, the
+              international studies certificate, the law and social justice
+              certificate, the native studies certificate, and the third world
+              studies certificate. Students can earn these certificates through
+              specific course work and other extracurricular activities.
+            </p>
+
+            <p>
+              The students of the school are also encouraged to participate in
+              clubs - Marianopolis offers over 150 different clubs and athletic
+              teams. Some of the clubs, such as the Marianopolis Robotics Club,
+              serve as a cover for Mari 51 Base operations. Other popular clubs
+              at Marianopolis include the Programming Club, Silver Key, and
+              Model UN.
+            </p>
+            <div class="images2">
+             
+              <img
+                src="https://live.staticflickr.com/65535/49365090127_1fc5685245_b.jpg"
+                   
+              />
+            </div>
+            <h2>
+              Activities and Events
+            </h2>
+            <p>
+              To maintain its cover as a normal CEGEP, Marianopolis often hosts
+              many events throughout the academic year for its students. Here
+              are some of them:
+            </p>
+            <h3 style="margin-bottom:0;"><i>MariHacks</i></h3>
+            <p style="margin-top:0;">
+              MariHacks is an 24-hour long hackathon hosted by Marianopolis.
+              It is exclusively for CEGEP and high school students. For a whole day,
+              hackers will collaborate on a software project and pitch it to a panel
+              of judges. The hackathon welcomes everyone, no matter their
+              programming experience. There are also mentors present during the day
+              that will help teams out with their projects and teach people valuable
+              lessons about technology and entrepreneurship.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49364783463_10e0583503_b.jpg"
+                onclick="window.location='https://www.marihacks.com/'"
+                style="cursor:pointer;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49364850991_9903f0535f_b.jpg"
+                   onclick="window.location='https://www.marihacks.com/'"
+                style="cursor:pointer;"
+              />
+            </div>
+            <h3 style="margin-bottom:0;"><i>MariMUN</i></h3>
+            <p style="margin-top:0;">
+              MariMUN is a student-run club where its members participate in various Model United Nations conferences in Montreal and, for a select few, around the world. At these conferences members represent different countries or characters as they tackle different discussion and debate topics. The club hosts a week-end conference each year for high school and CEGEP students. MariMUN is a great experience where people develop their public speaking skills and are opened up to a world of law, politics, business, and much more.
+            </p>
+            <div class="images">
+              <img
+                src="https://live.staticflickr.com/65535/49364354153_a61b73e5ec_b.jpg"
+                onclick="window.location='https://marimun.com/'"
+                   style="cursor: pointer;"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49365024982_59c7fe5022_b.jpg"
+                onclick="window.location='https://marimun.com/'"
+                   style="cursor: pointer;"
+              />
+            </div>
+            
+            
+            
+            
+            <div class="hiddenForMobile">
+              <br/>
+              <hr/>
+              <br/>
+              <h2 style="margin:0;">
+                Aliens Currently at the Base
+              </h2>
+              <div class="buttons">
+                
+                
+                <div id="leftBtn2" onclick="change(0);">
+                  &lt;
+                </div>
+                <div id="rightBtn2" onclick="change(1)">
+                  &gt;
+                </div>
+                
+                
+              </div>
+              
+              
+
+              
+
+              <div id="alienRotation2"></div>
+
+              <h2 style="margin:0;">
+                More on Marianopolis
+              </h2>
+              <div class="socialImages">
+                <img
+                  src="https://live.staticflickr.com/65535/49290404436_29994ee99e_o.png"
+                  onclick="window.location='http://www.marianopolis.edu/';"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49290404501_85bb8e6f3d_o.png"
+                  onclick="window.location='https://www.facebook.com/marianopolis/';"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49289917863_31ab3a8763_o.png"
+                  onclick="window.location='https://twitter.com/MarianopolisEdu';"
+                />
+                <img
+                  src="https://live.staticflickr.com/65535/49290404486_f65db4e99a_o.png"
+                  onclick="window.location='https://www.instagram.com/marianopolis_college/';"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="left">
+        <div class="top">
+          <div class="topBox">
+            <div class="buttons">
+              <div id="leftBtn" onclick="change(0);">
+                &lt;
+              </div>
+              <div id="rightBtn" onclick="change(1)">
+                &gt;
+              </div>
+            </div>
+
+            <h2 style="margin:0;">
+              Aliens Currently at the Base
+            </h2>
+
+            <div id="alienRotation"></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="bottomBox">
+            <h2 style="margin:0;">
+              More on Marianopolis
+            </h2>
+            <div class="socialImages">
+              <img
+                src="https://live.staticflickr.com/65535/49290404436_29994ee99e_o.png"
+                onclick="window.location='http://www.marianopolis.edu/';"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49290404501_85bb8e6f3d_o.png"
+                onclick="window.location='https://www.facebook.com/marianopolis/';"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49289917863_31ab3a8763_o.png"
+                onclick="window.location='https://twitter.com/MarianopolisEdu';"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49290404486_f65db4e99a_o.png"
+                onclick="window.location='https://www.instagram.com/marianopolis_college/';"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
