@@ -1,0 +1,250 @@
+body {
+  background-color: #0f162b;
+  color: #ffffff;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  padding: 0;
+}
+p {
+  font-size: 1.15em;
+  line-height: 1.5;
+}
+/* HEADER */
+
+.header {
+  background-color: #212941;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 10;
+}
+.header div {
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+.header div img {
+  height: 90%;
+}
+.hItem:hover,
+.hItemST:hover,
+.hItemLW:hover {
+  background-color: #2b3555;
+}
+.hItemST,
+.hItemLW {
+  display: flex;
+  flex-direction: column;
+}
+
+.hHidden {
+  background-color: #262F4B;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  visibility: hidden;
+}
+.hItemST:hover .hHidden,
+.hItemLW:hover .hHidden {
+  visibility: visible;
+  animation: fadein 0.3s;
+  -moz-animation: fadein 0.3s; /* Firefox */
+  -webkit-animation: fadein 0.3s; /* Safari and Chrome */
+  -o-animation: fadein 0.3s; /* Opera */
+}
+.hHidden:hover {
+  background-color: #313D61;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hShowing h2 {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+/* CONTENT */
+
+.main {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+}
+.left {
+  height: 100%;
+  width: 40%;
+  float: left;
+}
+.right {
+  height: 100%;
+  width: 60%;
+  float: right;
+  position: relative;
+}
+.top {
+  width: 100%;
+  height: 55%;
+  position: relative;
+}
+.bottom {
+  width: 100%;
+  height: 45%;
+  position: relative;
+}
+.rightBox {
+  border: 2px solid #373c4c;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  bottom: 1em;
+  left: 0em;
+  padding: 1em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+  /* Hide scrollbar for Chrome, Safari and Opera */
+.rightBox::-webkit-scrollbar, .topBox::-webkit-scrollbar, .back::-webkit-scrollbar ,     .bottomBox::-webkit-scrollbar, .hiddenMenu::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.rightBox, .topBox, .back,     .bottomBox, .hiddenMenu  {
+    -ms-overflow-style: none;
+}
+.topBox {
+  border: 2px solid #373c4c;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  bottom: 0.5em;
+  left: 1em;
+  padding: 1em;
+  overflow-y: scroll;
+  overflow-x: wrap;
+}
+.bottomBox {
+  border: 2px solid #373c4c;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  bottom: 1em;
+  left: 1em;
+  padding: 1em;
+  
+}
+.hiddenHeader {
+  z-index: 15;
+  display: none;
+}
+.hiddenMenu {
+  z-index: 15;
+  display: none;
+}
+
+ .hiddenForMobile {
+      display: none;
+    }
+
+/* MOBILE */
+@media screen and (max-width: 800px) {
+  /* Boxes */
+  .right {
+    width: 100%;
+  }
+  .left {
+    width: 100%;
+  }
+  .rightBox {
+    left: 1em;
+    right: 1em;
+    bottom: 0em;
+    border:none;
+    
+  }
+        .hiddenForMobile {
+        display: block;
+      }
+  /* Header */
+  .header {
+    display: none;
+  }
+  .hiddenHeader {
+    display: block;
+    background-color: #212941;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    z-index:10;
+  }
+  .hiddenHeader div {
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  .mari51LogoMobile {
+    float: left;
+    position: absolute;
+    left: 1em;
+  }
+  .mari51LogoMobile img{
+    height: 90%;
+  }
+  .menuIconMobile {
+    filter: invert(100%);
+    float: right;
+    position: absolute;
+    right: 1em;
+  }
+  .menuIconMobile img{
+    height: 70%;
+  }
+  .hiddenMenu {
+    background-color: #262F4B;
+    position: absolute;
+    top: 10vh;
+    height: auto;
+    width: 80vw;
+    right: 10vw;
+    z-index:9;
+    overflow-y: scroll;
+  }
+  .hiddenMenu h2,
+  .hiddenMenu p {
+    margin-right: 1em;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+    margin-top:0;
+    margin-bottom:0;
+    padding-top:0.75em;
+    padding-bottom:0.75em;
+  }
+  .hiddenItem1 h2 {
+    margin-left: 1em;
+  }
+  .hiddenItem p {
+    margin-left: 3em;
+  }
+  .hiddenItem:active p{
+    background-color:#313D61;
+  }
+}
