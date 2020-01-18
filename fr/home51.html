@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .left {
+      width: 40%;
+    }
+    .right {
+      width: 60%;
+    }
+    .top {
+      height: 55%;
+    }
+    .bottom {
+      height: 45%;
+    }
+    .bottomBox {
+      overflow-y: scroll;
+    }
+    .cipherGame {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+      padding-top: 0;
+    }
+    .cipherGame h3 {
+      width: 100%;
+      margin-bottom: 0.5em;
+    }
+    .cipherGame input {
+      background: none;
+      border: none;
+      color: #ffffff;
+      text-align: center;
+      border-bottom: 2px solid #373c4c;
+      margin-left: 0.5vw;
+      margin-right: 0.5vw;
+      font-size: 1.4em;
+      width: 2em;
+    }
+    .cipherGame label {
+      font-size: 1.1em;
+      font-style: italic;
+    }
+    .cipherGame button {
+      background: #373c4c;
+      border: none;
+      color: #ffffff;
+      padding: 1em;
+      padding-top: 0.7em;
+      padding-bottom: 0.7em;
+      font-size: 1em;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .refreshBtn {
+      background-color: #373c4c;
+      padding: 0.5em;
+      width: 1.3em;
+      height: 1.3em;
+      position: absolute;
+      right: 1em;
+    }
+    
+    @media screen and (max-width: 800px) {
+      
+      .right{
+        width:100%;
+      }
+      .left{
+        display:none;
+      }
+      .refreshBtn{
+        position:relative;
+        float:right;
+      }
+      
+      
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById('hMenu').scrollIntoView();
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+    var phrases = [
+      "Marianopolis Robotics",
+      "Flip twenty-twenty",
+      "CRC Robotics",
+      "Vanier College",
+      "Secret Alien Base",
+      "Beanbags",
+      "Aliens are out there",
+      "UFO Sightings",
+      "Alien Abductions"
+    ];
+    var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    var key = Math.floor(Math.random() * (26 - 1)) + 1;
+
+    var result = "";
+    for (var i = 0; i < phrase.length; i++) {
+      var c = phrase.charCodeAt(i);
+      if (65 <= c && c <= 90)
+        result += String.fromCharCode(((c - 65 + key) % 26) + 65);
+      else if (97 <= c && c <= 122)
+        result += String.fromCharCode(((c - 97 + key) % 26) + 97);
+      else result += phrase.charAt(i);
+    }
+
+    var answerKey;
+    var answerKey2;
+
+    function cipherGame() {
+      var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      var key = Math.floor(Math.random() * (26 - 1)) + 1;
+
+      var result = "";
+      for (var i = 0; i < phrase.length; i++) {
+        var c = phrase.charCodeAt(i);
+        if (65 <= c && c <= 90)
+          result += String.fromCharCode(((c - 65 + key) % 26) + 65);
+        else if (97 <= c && c <= 122)
+          result += String.fromCharCode(((c - 97 + key) % 26) + 97);
+        else result += phrase.charAt(i);
+      }
+
+      answerKey = [phrase, key, result];
+
+      document.getElementById("hiddenMessage").innerHTML = answerKey[2];
+      document.getElementById("hiddenMessage").style.color = "#ffffff";
+      document.getElementById("keyChoice").value = "";
+    }
+    function cipherGame2() {
+      var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      var key = Math.floor(Math.random() * (26 - 1)) + 1;
+
+      var result = "";
+      for (var i = 0; i < phrase.length; i++) {
+        var c = phrase.charCodeAt(i);
+        if (65 <= c && c <= 90)
+          result += String.fromCharCode(((c - 65 + key) % 26) + 65);
+        else if (97 <= c && c <= 122)
+          result += String.fromCharCode(((c - 97 + key) % 26) + 97);
+        else result += phrase.charAt(i);
+      }
+
+      answerKey2 = [phrase, key, result];
+      
+      document.getElementById("hiddenMessage2").innerHTML = answerKey2[2];
+      document.getElementById("hiddenMessage2").style.color = "#ffffff";
+      document.getElementById("keyChoice2").value = "";
+    };
+    function cipherTest(guessed) {
+      if (Number(guessed) === Number(answerKey[1])) {
+        document.getElementById("hiddenMessage").innerHTML = answerKey[0];
+        document.getElementById("hiddenMessage").style.color = "#00FF00";
+      } else {
+        document.getElementById("hiddenMessage").style.color = "red";
+      }
+    };
+    function cipherTest2(guessed) {
+      if (Number(guessed) === Number(answerKey2[1])) {
+        document.getElementById("hiddenMessage2").innerHTML = answerKey2[0];
+        document.getElementById("hiddenMessage2").style.color = "#00FF00";
+      } else {
+        document.getElementById("hiddenMessage2").style.color = "red";
+      }
+    };
+  </script>
+  <body onload="cipherGame(), cipherGame2()">
+              <div class="hiddenHeader">
+      <div onclick="window.location='../fr/home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../fr/home51.html'">
+        <h2>
+          Accueil
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../fr/home.html'">
+        <h2>
+         Retour à Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+À propos 
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/school.html'">
+        <p>
+         La base Mari 51
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/team.html'">
+        <p>
+          Employés
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Menaces de sécurité
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Travaux de laboratoire
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/journal.html'">
+        <p>
+         Entrées de laboratoire
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/tutorial.html'">
+        <p>
+         Projets spéciaux
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/gallery.html'">
+        <p>
+          Galerie
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Langue
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../en/home51.html'">
+        <p>
+          English
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../fr/home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../fr/school.html'">
+        <h2>
+           La base Mari 51
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/team.html'">
+        <h2>
+         Employés
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Menaces de sécurité
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+           Travaux de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/journal.html'">
+          <h2>
+            Entrées de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/tutorial.html'">
+          <h2>
+            Projets spéciaux
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/gallery.html'">
+          <h2>
+            Galerie
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../en/home51.html'">
+        <h2>
+          English
+        </h2>
+      </div>
+      <div onclick="window.location='../fr/home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            Welcome to Mari 51
+          </h1>
+          <div class="content">
+            <img src="https://live.staticflickr.com/7836/46909734552_2890b959d9_b.jpg" style="width:90%;
+                                                                                              margin-top:1em;
+                                                                                              border: 5px solid #373c4c;
+                                                                                                display: block;
+  margin-left: auto;
+  margin-right: auto;">
+            <p>
+              The Mari 51 Secret Alien Base is located at Marianopolis College
+              and is run by undercover employees disguised as members of the
+              Marianopolis Robotics Team. The Base holds many specialized
+              extraterrestrial laboratories where scientists run experiments on
+              different alien species and artefacts found throughout the years.
+            </p>
+            <p>
+              Recently, there has been growing unrest within the general public
+              about the existence of aliens. Naturally, some are starting to become
+              suspicious of the operations run at Mari 51. In the past months,
+              several groups of self-proclaimed extraterrestrial truth-seekers
+              have been planning a raid of the Mari 51 facilities to prove the
+              existence of alien life. Luckily, they have posted all of their
+              plans online. On this website, you can access information about
+              the operations at the Mari 51 Secret Alien Base as well as this
+              new security threat on the Base posed by these raiders.
+            </p>
+            <p>
+              If any non-Mari 51 employee passes by you when you have this
+              website open, click the Marianopolis Robotics logo in your top
+              right corner to escape.
+            </p>
+            <hr>
+            <h3>
+              Thank Yous
+            </h3>
+            <p>
+              The Mari 51 team was able to work to the best of their ability this year
+              thanks to the help of many individuals. The Marianopolis Robotics Team
+              would like to say thank you to:
+            </p>
+            <p>
+              - <b><i>Dominique Paradis</i></b>, mentor, for watching over us and making sure
+              we do not go too off the rails.
+              <br/>
+              - <b><i>Patrick Bourque and Claudia Grande</i></b>, Marianopolis Physical Resources, for rooting for us and making sure we had a room
+              to work in this year.
+              <br/>
+              - <b><i>Amanda Marrone</i></b>, VP Finance of the Marianopolis Student Union, for
+              always being quick with our reimbursements.
+            </p>
+                          
+            <div class="hiddenForMobile">
+              <br/>
+              <hr/>
+              <br/>
+               <h2 style="margin:0;">
+              Practice your Decryption Skills
+            </h2>
+              <br/>
+                          <img
+              src="https://live.staticflickr.com/65535/49291069571_32424273dd_o.png"
+              class="refreshBtn"
+              onclick="cipherGame2()"
+            />
+           
+
+            <div class="cipherGame">
+              <h3
+                id="hiddenMessage2"
+                style=" font-style: italic;font-size:1.6em;"
+              ></h3>
+              <div>
+                <label for="keyChoice2">Key:</label>
+                <input
+                  type="number"
+                  id="keyChoice2"
+                  name="keyChoice2"
+                  min="1"
+                  max="26"
+                />
+                <button
+                  onclick="cipherTest2(document.getElementById('keyChoice2').value)"
+                >
+                  Check Answer
+                </button>
+              </div>
+            </div>
+            <p>
+              The Caesar Cipher is a cipher in which each letter in the alphabet
+              is shifted by a number, called a key. Your task is to figure out
+              the hidden message by finding the key used to encrypt the original
+              text.
+            </p>
+            <p>
+              Ciphering is often used to encode and hide messages between Mari 51
+              and other secret government organizations. It is one of the reasons
+              why the public has been unaware of the operations at the Base for so
+              long.
+            </p>
+              <hr/>
+            <h2>
+              SPACE INVADERS
+              </h2>
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="top">
+          <div class="topBox">
+            <h2 style="margin:0;">
+              Space Invaders
+            </h2>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="bottomBox">
+            <img
+              src="https://live.staticflickr.com/65535/49291069571_32424273dd_o.png"
+              class="refreshBtn"
+              onclick="cipherGame()"
+            />
+            <h2 style="margin:0;">
+              Practice your Decryption Skills
+            </h2>
+
+            <div class="cipherGame">
+              <h3
+                id="hiddenMessage"
+                style=" font-style: italic;font-size:1.6em;"
+              ></h3>
+              <div>
+                <label for="keyChoice">Key:</label>
+                <input
+                  type="number"
+                  id="keyChoice"
+                  name="keyChoice"
+                  min="1"
+                  max="26"
+                />
+                <button
+                  onclick="cipherTest(document.getElementById('keyChoice').value)"
+                >
+                  Check Answer
+                </button>
+              </div>
+            </div>
+            <p>
+              The Caesar Cipher is a cipher in which each letter in the alphabet
+              is shifted by a number, called a key. Your task is to figure out
+              the hidden message by finding the key used to encrypt the original
+              text.
+            </p>
+            <p>
+              Ciphering is often used to encode and hide messages between Mari 51
+              and other secret government organizations. It is one of the reasons
+              why the public has been unaware of the operations at the Base for so
+              long.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
