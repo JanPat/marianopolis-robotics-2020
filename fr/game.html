@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marianopolis Robotics</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../general.css" rel="stylesheet" />
+  </head>
+  <style>
+    .externalLinks img {
+      width: 15vh;
+      margin: 0;
+      padding: 0;
+      margin-right: 1em;
+      margin-left: 1em;
+    }
+    .externalLinks img:hover {
+      -webkit-filter: drop-shadow(0px 0px 5px white);
+      filter: drop-shadow(0px 0px 5px white);
+    }
+    .externalLinks {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    .content p img {
+      width: 90%;
+      max-width:500px;
+      display:block;
+      margin-left: auto;
+      margin-right:auto;
+      background-color: rgb(255, 255, 255, 0.05);
+    }
+
+    .socialImages {
+      width: 100%;
+      text-align: center;
+    }
+    .socialImages img {
+      max-width: 20%;
+      margin: 1%;
+    }
+    .bottomBox h2 {
+      width: 100%;
+    }
+    .bottomBox {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .socialImages img:hover {
+      -webkit-filter: drop-shadow(0px 0px 5px white);
+      filter: drop-shadow(0px 0px 5px white);
+    }
+    @media screen and (max-width: 800px) {
+      .left{
+        display:none;
+      }
+      .content p img {
+      width: 90%;
+      margin-left: 5%;
+      background-color: rgb(255, 255, 255, 0.05);
+    }
+    }
+  </style>
+  <script>
+    function showHiddenMenu() {
+      if (document.getElementById("hMenu").style.display === "block") {
+        document.getElementById("hMenu").style.display = "none";
+      } else {
+        document.getElementById("hMenu").style.display = "block";
+        document.getElementById("hMenu").style.animation = "fadein 0.3s";
+      }
+    }
+  </script>
+  <body>
+   <div class="hiddenHeader">
+      <div onclick="window.location='../fr/home51.html'" class="mari51LogoMobile">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="menuIconMobile" onclick="showHiddenMenu();">
+        <img
+          src="https://live.staticflickr.com/65535/49264916912_cb577fa698_o.png"
+        />
+      </div>
+    </div>
+    <div class="hiddenMenu" id="hMenu">
+      <div class="hiddenItem1" onclick="window.location='../fr/home51.html'">
+        <h2>
+          Accueil
+        </h2>
+      </div>
+      <div class="hiddenItem1" onclick="window.location='../fr/home.html'">
+        <h2>
+         Retour à Marianopolis Robotics
+        </h2>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+À propos 
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/school.html'">
+        <p>
+         La base Mari 51
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/team.html'">
+        <p>
+          Employés
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Menaces de sécurité
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/game.html'">
+        <p>
+          FLIP 2020
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/robot.html'">
+        <p>
+          R.O.B.O.T
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+         Travaux de laboratoire
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/journal.html'">
+        <p>
+         Entrées de laboratoire
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/tutorial.html'">
+        <p>
+         Projets spéciaux
+        </p>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../fr/gallery.html'">
+        <p>
+          Galerie
+        </p>
+      </div>
+      <div class="hiddenItem1">
+        <h2>
+          Langue
+        </h2>
+      </div>
+      <div class="hiddenItem" onclick="window.location='../en/game.html'">
+        <p>
+          English
+        </p>
+      </div>
+    </div>
+    <div class="header">
+      <div onclick="window.location='../fr/home51.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256770792_51456f5125_o.png"
+        />
+      </div>
+      <div class="hItem" onclick="window.location='../fr/school.html'">
+        <h2>
+           La base Mari 51
+        </h2>
+      </div>
+      <div class="hItem" onclick="window.location='../fr/team.html'">
+        <h2>
+         Employés
+        </h2>
+      </div>
+      <div class="hItemST">
+        <div class="hShowing">
+          <h2>
+            Menaces de sécurité
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/game.html'">
+          <h2>
+            FLIP 2020
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/robot.html'">
+          <h2>
+            R.O.B.O.T
+          </h2>
+        </div>
+      </div>
+      <div class="hItemLW">
+        <div class="hShowing">
+          <h2>
+           Travaux de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/journal.html'">
+          <h2>
+            Entrées de laboratoire
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/tutorial.html'">
+          <h2>
+            Projets spéciaux
+          </h2>
+        </div>
+        <div class="hHidden" onclick="window.location='../fr/gallery.html'">
+          <h2>
+            Galerie
+          </h2>
+        </div>
+      </div>
+      <div class="hItem" onclick="window.location='../en/game.html'">
+        <h2>
+          English
+        </h2>
+      </div>
+      <div onclick="window.location='../fr/home.html'">
+        <img
+          src="https://live.staticflickr.com/65535/49256112423_b352419b9a_o.png"
+        />
+      </div>
+    </div>
+    <div class="main">
+      <div class="right">
+        <div class="rightBox">
+          <h1 style="margin:0;">
+            FLIP 2020
+          </h1>
+          <div class="content">
+            <p>
+              Due to the secretive nature of the Mari 51 base, a few have grown
+              suspicious of our activities. The Mari 51 intelligence committee
+              found that a raid of the base is being planned by a group of
+              curious and reckless alien enthusiasts. Fortunately, they are
+              amateurs and did not protect their raiding plans online. Their
+              plan is called Flip 2020 and they want to storm the alien
+              laboratory containing numerous alien artefacts collected
+              throughout the years. According to their plans, four specialized
+              <a
+                href="../en/robot.html"
+                style="text-decoration:none; color:#ffffff;"
+                >robots</a
+              >, each belonging to a different raiding team, will enter the lab
+              sometime from February 13 to February 15 2020. <br /><br />
+              Here is a transcript from a message sent by the person who is
+              organizing the raid:
+            </p>
+
+            <p style="background-color:#212941; padding:1em;">
+              <i>
+                Good evening fellow alien truth seekers,
+                <br /><br />
+                This message will detail our mission and strategies for
+                successfully raiding one of the Mari 51 laboratories and proving
+                to the world that aliens exist.
+                <br /><br />
+                To do this, we will need to get our hands on as many alien
+                artefacts as possible. Our source informed us that the base
+                keeps most of their artefacts inside of a room that is
+                completely inaccessible. Luckily, we can control the conveyor
+                and artefact dispenser that are in the room by interacting with
+                different actuators in a neighboring lab room. Once the
+                artefacts are on the conveyor, we want them to land in our
+                collection bucket, which will either be coloured yellow or blue.
+                <br /><br />
+                We will have 5 minutes to collect as many items as possible. The
+                artefacts are put inside red or black protective sleeves that
+                look like beanbags. Our source told us that the black beanbags
+                have more precious items. To put this into perspective, if the
+                red items are worth 20 points, the black ones would be worth
+                200 points. Our group of raiders partnered with another group
+                that has a robot and we agreed to share our artefacts as long as
+                we trigger at least one actuator. However, we will have to
+                compete as a team against two rival teams with robots who are
+                also looking to collect as many actuators as possible. You will
+                meet these people on the day of the raid and you’ll be able to
+                tell who’s who by the colour of their robot.
+                <br /><br />
+                As I said before, you can control the conveyor and artefact
+                dispenser from the neighboring lab. The conveyor switches
+                direction every 30 seconds. This is called a conveyor period.
+                There will be 5 different types of actuators in the lab: the
+                chained ball, the hinged board, the mushrooms, the twister, and the
+                arch. Each one affects either the conveyor or dispenser in a
+                unique way. We will call this an actuator power-up. While a
+                power-up is active, a green light will blink. If a red light is
+                being shown, that means the actuator is in its downtime and the
+                power-up cannot be activated. Here is a rundown on what each
+                actuator does:
+                <br /><br />
+                THE MUSHROOM ACTUATOR
+                <br />
+                This system consists of two separate mushroom actuators placed
+                at a certain distance from the game field. When the closer
+                mushroom is pressed, the speed of the conveyor is 1.5x its
+                normal speed. When the further one is pressed, the speed of the
+                conveyor is doubled. This power-up lasts for 20 seconds.
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49324848181_a6fee8da7c_o.png"
+                />
+                <br /><br />
+                THE HINGED BOARD
+                <br />
+                This board must be pressed to start the conveyor.  If this board is pressed, it will immediately flip the direction of the conveyor and start a new conveyor period 1 minute after the initial conveyor start up. This conveyor may only
+                be used once.
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49324366508_0a9f2c3fac_o.png"
+                />
+                <br /><br />
+                THE CHAINED BALL
+                <br />
+                When the switch is pressed by the ball, the drop rate of the
+                dispenser will double. This power-up lasts 20 seconds.
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49324848241_9e1310ec20_o.png"
+                />
+                <br /><br />
+                THE TWISTER
+                <br />
+                Unlike the others, this actuator is common to both teams. If the
+                flap of the actuator is perpendicular to the conveyor belt for
+                an uninterrupted 3 seconds, the conveyor belt will stop moving
+                for 10 seconds.
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49325065082_b94c36a7d2_o.png"
+                />
+                <br /><br />
+                THE ARCH
+                <br />
+                To activate this actuators power-up, the carriage on the arch
+                must be brought from side to side. Before entering the lab, we
+                will get to choose the power-up associated to the arch actuator.
+               19. Our choices are to release one artefact in a black beanbag, halve the speed of the conveyor for 20 seconds, or increase the drop rate by 3x for 20 seconds. 
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49324848261_2182b059b3_o.png"
+                />
+                <br /><br />
+                We’ll try to be as careful as possible when we send our robot
+                into the lab. We have to make sure we do not touch the other
+                team’s actuators as well as damage anything in the lab. Our
+                robot will start on one end of the lab, near the ball and chain,
+                and on the other side of the hinged board. You can see a floor
+                plan of the actuator lab below:
+                <br /><br />
+                <img
+                  src="https://live.staticflickr.com/65535/49324366588_8987beedb1_o.jpg"
+                  style="max-width:90%; display:block;
+      margin-left: auto;
+      margin-right:auto;"
+                />
+                <br /><br />
+                On the day of the raid, we will send in one driver and one
+                co-pilot to control the robot. Meanwhile, we will raid another
+                lab in the Mari 51 base that we can access. Once the raid is
+                done, we will all meet up at homebase and show the world the
+                truth about extraterrestrial life.
+                <br /><br />
+                I want to believe,
+                <br />
+                ~ Ioanna
+              </i>
+            </p>
+                        <div class="hiddenForMobile">
+                          <br/>
+            <h2 style="margin:0;margin-bottom:0.5em;">
+              Video Sent to Raiders
+            </h2>
+            <div
+              style="position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;"
+            >
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/AUHoa-ciWW4"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    max-height:100%;"
+              ></iframe>
+            </div>
+              <br/>
+              <img src="https://live.staticflickr.com/65535/49343417587_7729646a7f_o.png" style="width:90%;
+                                                                                              margin-top:1em;
+                                                                                              
+                                                                                                display: block;
+  margin-left: auto;
+  margin-right: auto;"/>
+            </div>
+            <p>
+              To learn more, visit these links:
+            </p>
+            <div class="externalLinks">
+              <img
+                src="https://live.staticflickr.com/65535/49269691823_135a340210_o.png"
+                onclick="window.location.href='http://robo-crc.ca/wp-content/uploads/2019/12/Game_v20191218.pdf'"
+              />
+              <img
+                src="https://live.staticflickr.com/65535/49270334782_9b18cbddac_o.png"
+                onclick="window.location.href='https://www.youtube.com/embed/DIdrr1apLfY'"
+              />
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="top">
+          <div class="topBox">
+            <h2 style="margin:0;margin-bottom:0.5em;">
+              Video Sent to Raiders
+            </h2>
+            <div
+              style="position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;"
+            >
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/AUHoa-ciWW4"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    max-height:100%;"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div
+            class="bottomBox"
+            style="background-image: url('https://live.staticflickr.com/65535/49343417587_7729646a7f_o.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;background-color:#212941;"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
