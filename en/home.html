@@ -35,18 +35,21 @@
       left: 0;
       justify-content: space-around;
       align-items: center;
-      border-bottom: 2vh solid;
-      border-image: linear-gradient(
-          to right,
-          #02389a 25%,
-          #3560ae 25%,
-          #3560ae 50%,
-          #5d80be 50%,
-          #5d80be 75%,
-          #7d99cb 75%
-        )
-        5;
     }
+        .border{
+      width:100%;
+      position:fixed;
+      top:10vh;
+      left:0;
+      height: 2vh;
+      z-index:10;
+    }
+    .border div{
+      float:left;
+      width:25%;
+      height:100%;
+    }
+    
     .headerLogo {
       max-width: 15vw;
       height: 80%;
@@ -540,6 +543,12 @@ margin-right:1em;
           Français
         </h2>
       </div>
+    </div>
+    <div class="border">
+      <div style="background-color:#02389a"></div>
+      <div style="background-color:#3560ae"></div>
+      <div style="background-color:#5d80be"></div>
+      <div style="background-color:#7d99cb"></div>
     </div>
     <div class="content">
       <a name="home" class="anchor"></a>
