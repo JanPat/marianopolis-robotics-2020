@@ -48,7 +48,7 @@ p {
 .hHidden {
   background-color: #262F4B;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   visibility: hidden;
 }
