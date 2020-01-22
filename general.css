@@ -68,9 +68,16 @@ p {
   align-items: center;
   visibility: hidden;
   display:none;
-  
-  
+  position:relative;
+  top:0vh;
 }
+
+/*if safari: top:10vh*/
+@media screen and (-webkit-min-device-pixel-ratio: 0) { _::-webkit-full-page-media, _:future, :root , .hHidden { 
+  top: 10vh;
+  } }
+
+
 .hItemST:hover .hHidden,
 .hItemLW:hover .hHidden {
   visibility: visible;
