@@ -1,6 +1,6 @@
 html {
       scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      
     }
 body {
   background-color: #0f162b;
@@ -120,6 +120,7 @@ p {
   left: 0;
   width: 100%;
   height: 90vh;
+  -webkit-overflow-scrolling: touch;
 }
 .left {
   height: 100%;
@@ -266,6 +267,7 @@ p {
     right: 10vw;
     z-index:9;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
   .hiddenMenu h2,
   .hiddenMenu p {
