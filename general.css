@@ -3,6 +3,7 @@ body {
   color: #ffffff;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   padding: 0;
+          -webkit-overflow-scrolling: touch; /*try this*/
 }
 p {
   font-size: 1.15em;
