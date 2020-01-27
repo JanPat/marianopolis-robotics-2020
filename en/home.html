@@ -482,6 +482,8 @@ margin-right:1em;
       vid.src = vidSources[activeVideo];
       var activeVideo2 = Math.floor(Math.random() * vidSources2.length);
       vidMari.src = vidSources2[activeVideo2];
+      document.getElementById("cover").style.display = "none";
+      document.getElementById("loginP").style.display = "none";
     }
     function alienBase() {
       var cover = document.getElementById("cover");
