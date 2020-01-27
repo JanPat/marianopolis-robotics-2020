@@ -1,10 +1,3 @@
-TO ADD:
-- SPACE INVADERS TUTORIAL
-
-TO FIX:
-- SCROLLING ON NEW IPHONES TEAM PAGE
-
-
 Website for Marianopolis Robotics for the CRC Robotics Competition 2020
 
 - Website Designed by: Janvi Patel
