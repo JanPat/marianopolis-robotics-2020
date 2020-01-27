@@ -1,12 +1,8 @@
-TO FIX:
-- ADD TITLES AND META DESCRIPTIONS TO EACH PAGE
-- Why was space invaders slower
-
 TO ADD:
-- VIDEO
-- GAME VIDEO
 - SPACE INVADERS TUTORIAL
-- SIMULATION TUTORIAL
+
+TO FIX:
+- SCROLLING ON NEW IPHONES TEAM PAGE
 
 
 Website for Marianopolis Robotics for the CRC Robotics Competition 2020
