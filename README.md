@@ -8,8 +8,6 @@ TO ADD:
 - SPACE INVADERS TUTORIAL
 - SIMULATION TUTORIAL
 
-TO THINK ABOUT
-- STL VIEWER VS COLORED IMAGE
 
 Website for Marianopolis Robotics for the CRC Robotics Competition 2020
 
