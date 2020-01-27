@@ -7,22 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../general.css" rel="stylesheet" />
     <link rel="icon" href="https://live.staticflickr.com/65535/49418024982_7d4ed6963d_o.png">
-    <!--
-Thank you to viewstl.com for the free online STL viewer
-https://www.viewstl.com/embed/
-
-SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
--->
   </head>
   <style>
-    .images, .images2 {
+    .images, .images2, .images3  {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
     }
-    
         
     .images img {
       width: 40%;
@@ -35,6 +28,16 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
       width: 60%;
       border: 5px solid #373c4c;
       margin: 1%;
+      height:100%;
+    }
+    .images3{
+      align-items:center;
+    }
+    .moving{
+      display:block;
+    }
+    .images3 img {
+      width: 50%;
       height:100%;
     }
 
@@ -69,24 +72,7 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
     #alienRotation {
       height: auto;
     }
-    #alienRotation img {
-      border: 0;
-      margin: 0;
-      width: 50%;
-      margin-left:25%;
-      height: 100%;
-      min-height: 30vh;
-      display:none;
-    }
-    #alienRotation iframe {
-      border: 0;
-      margin: 0;
-      width: 50%;
-      margin-left:25%;
-      height: 100%;
-      min-height: 30vh;
-      display:block;
-    }
+
     .buttons {
       padding: 0em;
       width: 3em;
@@ -110,9 +96,6 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
       float: right;
     }
    
-  
-
-
     @media screen and (max-width: 800px) {
       .buttons{
         float:right;
@@ -152,17 +135,15 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
         border: 5px solid #373c4c;
         margin: 1%;
       }
+      .images3 img{
+        width:70%;
+      }
       .left {
         display: none;
       }
 
-      #alienRotation2 iframe {
-        display: none;
-      }
-      #alienRotation2 img {
-        display: block;
-        width: 80%;
-        margin-left: 10%;
+     .moving{
+        display:none;
       }
     }
   </style>
@@ -185,14 +166,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                 Découvert en hiver 2019 par la scientifique en chef, Janvi Patel, le <i>Grumo Dentata</i> est un  organisme parasite qui vit dans des environnements acides. L’organisme est 5 pouces de hauteur et a la capacité de s’étendre plus que dix fois sa hauteur de repos.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49343694627_b12955573a_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1pBm-tRTtVrZfeDVFi0sp2xwCQOdQuume&rotation=fixed&clean=yes&noborder=yes&orientation=bottom&bgcolor=transparent&shading=smooth"
-                style=""
-              ></iframe>
+            <div class="images3">
+                <img src="https://drive.google.com/uc?id=1C56ZhM25H85t1MqfegQEwoPct3dFBzP6" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49343694627_b12955573a_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                Comme l'organisme est nouveau au laboratoire, des tests approfondis sont encore en cours. La durée de vie moyenne du <i>Grumo Dentata</i> est de 10 jours. L'organisme se reproduit une fois à l'intérieur de l'hôte. L'hôte a tendance à vivre 3 jours après avoir été exposé au parasite.
               </p>`
@@ -205,14 +182,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                 L'<i>Occhio Corno</i> est l'un des plus anciens extraterrestres de la base extraterrestre Mari 51. Il a été découvert en 2016 par le chercheur scientifique Ninja Song.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49343701712_e0ae53e202_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1Tn04G7FMSb3AryyVGVYF52EPAyvQftkW&noborder=yes&clean=yes&shading=smooth&rotation=fixed&orientation=bottom&bgcolor=transparent"
-                style=""
-              ></iframe>
+             <div class="images3">
+                <img src="https://drive.google.com/uc?id=1VN4dzm5x7Nzslr2DopDrZNFQSOy6nECU" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49343701712_e0ae53e202_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                 Bien que l'organisme a sept yeux, il utilise principalement l'écholocation pour naviguer son environnement. Dans une expérience menée en 2018, il a été découvert que l'<i>Occhio Corno</i> se dissout lorsqu'il est exposé à de grandes quantités de soufre.
               </p>`
@@ -225,14 +198,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                 Découvert en 2018 par le scientifique principal de la recherche, Leftraru Gonzalez-Tucas, l'<i>Albero Corallo</i> est l'équivalent extra-terrestre à corail.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49343505281_f25948a108_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1jdbhvEROoofDmwXDQFHauUk-gGiqh_OH&bgcolor=transparent&shading=smooth&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
-                style=""
-              ></iframe>
+             <div class="images3">
+                <img src="https://drive.google.com/uc?id=13EMM0BKvqEEGQa7VQ43hpKaiYMRBNUk5" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49343505281_f25948a108_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                 L'<i>Albero Corallo</i> ne peut vivre que dans les environnements humides contenant de grandes quantités d'argon. L'organisme doit également être conservé à des températures entre 80 et 100 degrés Celsius. Pour ces raisons, l’<i>Albero Corallo</i> est l’un des plus haut risque organismes de la base.
               </p>`
@@ -245,14 +214,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                L'<i>Asta Dentata</i> a été découverte en 2018 par le chercheur principal Jason Wang. Il a été trouvé vivant dans le système digestif d'un organisme décédé sur lequel Wang faisait une autopsie.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49359270527_088a1aa2a8_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1vtv-K5ZBzJPiu9l5YsefcyRIEaOzmHh8&bgcolor=transparent&shading=smooth&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
-                style=""
-              ></iframe>
+             <div class="images3">
+                <img src="https://drive.google.com/uc?id=1SprJ7qBiMUL-cyTDdzQXCdto6hBxjb9x" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49359270527_088a1aa2a8_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                 L'organisme est un prédateur au mouvement lent qui mettra fin à tout être vivant qui le mange. Le corps de l'<i>Asta Dentata</i> est recouvert de rangées de dents qui s'accrochent et déchirent tous les tissus avec lesquels il entre en contact.
               </p>`
@@ -265,14 +230,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                 Le <i>Polpo Carino</i> a été découvert par le chercheur Anh-Khoa Chau-Vo en 2017. Son apparence inoffensive trompe souvent ses proies. Le <i>Polpo Carino</i> est l'un des organismes les plus dangereux du laboratoire.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49343043743_86c4776c4d_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1IB3DM86yxFfEyXuHVvJg_TqiNVEtZO6K&bgcolor=transparent&rotation=fixed&clean=yes&noborder=yes&orientation=bottom"
-                style=""
-              ></iframe>
+             <div class="images3">
+                <img src="https://drive.google.com/uc?id=1vyLOu_KtFQVi-cLB1vePVchQiFskdVG2" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49343043743_86c4776c4d_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                 Le <i>Polpo Carino</i> se reproduit toutes les deux semaines et peut produire plus de 40 descendants au cours de sa durée de vie. Cet organisme doit être contenu dans un conteneur spécialisé en raison de sa nature dangereuse. En 2019, l'organisme a attaqué l'un des meilleurs chercheurs de la base, qui a ensuite été hospitalisé pendant plusieurs semaines.
               </p>`
@@ -285,14 +246,10 @@ SOMETHING IS WRONG HERE WITH THE MOBILE MENU SELECTOR HAMBURGER ICON!!!!
               <p style="margin-top:0;margin-bottom:0.1em;">
                 Le <i>Mille Facce</i> a été découvert à Milan, en Italie, en 2018 par la chercheuse Jessica Macknofsky. Il absorbe ses proies et affiche un visage sur son corps pour chaque organisme mangé.
               </p>
-              <img
-                src="https://live.staticflickr.com/65535/49343036648_53533ff9c7_o.png"
-              />
-              <iframe
-                id="vs_iframe"
-                src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1JRNaAiHOb4uDDuVcYl-ZaikN2IGUmXwY&noborder=yes&clean=yes&rotation=fixed&orientation=bottom&shading=smooth&bgcolor=transparent"
-                style=""
-              ></iframe>
+             <div class="images3">
+                <img src="https://drive.google.com/uc?id=1m-Tti8JhVTslyaKT2KkFIA1GajlPqG7f" class="moving"/>
+                <img src="https://live.staticflickr.com/65535/49343036648_53533ff9c7_o.png"/>
+            </div>
               <p style="margin-top:0.1em;">
                 Un organisme <i>Mille Facce</i> adulte peut atteindre jusqu'à 8 pieds de hauteur, mais au moment de la naissance, il ne mesure que quelques pouces de hauteur. La durée de vie du <i>Mille Facce</i> est de 1,5 ans et l'organisme passe la majeure partie de sa vie à son stade de développement adulte.
               </p>`
